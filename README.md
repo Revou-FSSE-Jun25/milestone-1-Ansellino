@@ -66,7 +66,7 @@ Your project will be evaluated based on the following criteria:
 - Proper nesting of HTML elements without any misplaced tags.
 - Clear hierarchy of HTML elements maintained with appropriate use of headings (H1, H2, etc.).
 - Well-organized HTML code that is easy to read, with proper indentation and spacing.
-- Appropriate use of semantic HTML elements for structuring content (e.g., <header>, <footer>, <section>).
+- Appropriate use of semantic HTML elements for structuring content (e.g., `<header>`, `<footer>`, `<section>`).
 
 ✅ HTML Form:
 
