@@ -105,3 +105,7 @@ Website HTML tanpa CSS dan JavaScript dengan 4 section utama:
 ## Technologies Used
 
 Teknologi yang digunakan dalam projek ini meliputi HTML
+
+## Link Deploy
+
+Berikut adalah link untuk mengakses pages https://revou-fsse-jun25.github.io/milestone-1-Ansellino/
