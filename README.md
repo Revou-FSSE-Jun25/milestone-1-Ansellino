@@ -86,3 +86,22 @@ Your project will be evaluated based on the following criteria:
 - Detailed list of features implemented in the website.
 - Outline of technologies and tools used in the development of the website.
 - Instructions for accessing the deployed page and using the website are provided.
+
+# Documentation Project
+
+## Overview of the Website
+
+Website ini di buat untuk menyelesaikan Milestone membuat Website menggunakan HTML Part 1, untuk projectnya berupa Website Portolio sederhana menjelaskan tentang biodata seseorang bernama "Jeremy Ansellino Gunawan". dengan struktur semantik `<header>`, `<footer>`, `<section>`, `<article>`, dan `<aside>`.
+
+## Features Implemented
+
+Website HTML tanpa CSS dan JavaScript dengan 4 section utama:
+
+- **Home Section**: Halaman utama yang memperkenalkan identitas
+- **About Me Section**: Bagian yang berisi biografi singkat, pendidikan, pengalaman kerja, dan minat
+- **Projects Section**: Section untuk menampilkan project-project yang sudah pernah di kerjakan dan sedang di kerjakan.
+- **Contact Section**: Bagian kontak dengan form untuk nama, email, dan pesan
+
+## Technologies Used
+
+Teknologi yang digunakan dalam projek ini meliputi HTML
