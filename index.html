@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Capstone Project 1 - HTML Semantik</title>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <ul>
+          <li><a href="#homepage">Home Page</a></li>
+          <li><a href="#aboutme">About Me</a></li>
+          <li><a href="education">Education</a></li>
+          <li><a href="experience">Experience</a></li>
+          <li><a href="project">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <h1>
+        Capstone Project 1 - HTML Semantik Without CSS and JavaScript
+        <p>
+          <strong>Jeremy Ansellino</strong> <br />
+          Software Engineer
+        </p>
+      </h1>
+    </header>
+
+    <main>
+      <section id="homepage">
+        <h2>Selamat Datang di Portfolio saya di Capstone Project 1</h2>
+        <figure>
+          <img src="image/1737618147295.jpeg" alt="Foto Profile" />
+          <figcaption>Foto profile Jeremy Ansellino</figcaption>
+        </figure>
+      </section>
+      <section id="aboutme">
+        <h2>About Me</h2>
+        <p>
+          Jeremy Ansellino Gunawan, akan menjadi software engineer dengan
+          critical thinking yang kuat, problem solving yang mantap &amp;
+          berintegritas.
+        </p>
+
+        <article id="education">
+            <h3>Education</h3>
+            <ul>
+                <li>
+                    <p>RevoU</p>
+                    <p>Fullstack Software Engineer</p>
+                    <p>Juni 2025 - Present</p>
+                </li>
+                <li>
+                    <p>Bina Nusantara University</p>
+                    <p>Master's degree, Computer Science</p>
+                    <p>May 2023 - January 2025</p>
+                    <p>Grade: 3,67 / 4,00</p>
+                </li>
+                <li>
+                    <p>Bina Nusantara University</p>
+                    <p>Bachelor's degree, Computer Science</p>
+                    <p>September 2018 - April 2023</p>
+                    <p>Grade: 3,30 / 4,00</p>
+                </li>
+                <li>
+                    <p>Bangkit Academy led by Google, Tokopedia, Gojek &amp; Traveloka - Intern</p>
+                    <p>Cloud Computing</p>
+                    <p>February 2021 - August 2021</p>
+                    <p>Grade: 94,99 / 100 </p>
+                </li>
+            </ul>
+            </p>
+        </article>
+
+        <article id="experience">
+          <h3>Experience</h3>
+          <ul>
+            <li>
+              <p>Toko Crypto</p>
+              <p>Analyst - Freelance</p>
+              <p>April 2025 - June 2025</p>
+            </li>
+            <li>
+                <p>Prasunet Company</p>
+                <p>Full Stack Developer - Intern</p>
+                <p>March 2025 - April 2025</p>
+            </li>
+            <li>
+                <p>UMNGrove</p>
+                <p>Full Stack Developer - Freelance</p>
+                <p>October 2024 - March 2025</p>
+            </li>
+            <li>
+                <p>PASARJB</p>
+                <p>Small Business Owner - Self-employed</p>
+                <p>January 2018 - May 2024</p>
+            </li>
+            <li>
+                <p>CV. Mahkota Sarana</p>
+                <p>Web Developer - Intern</p>
+                <p>October 2021 - March 2022</p>
+            </li>
+          </ul>
+        </article>
+      
+    </section>
+      <section id="project">
+        <h2>Projects</h2>
+        <ul>
+            <li>
+                <p>REKBERKU.SITE</p>
+                <p>CEO & Project Leader & Community Manager</p>
+                <p>March 2025 - Present</p>
+                <p>Link: <a href="https://rekberku.site/">Link Website</a></p>
+            </li>
+            <li>
+                <p>PASARJB.COM</p>
+                <p>CEO & Project Leader & Community Manager</p>
+                <p>January 2018 - May 2024</p>
+                <p>Link: <a href="https://pasarjb.com/">Link Website</a></p>
+            </li>
+            <li>
+                <p>Lembur Mangrove Patikang</p>
+                <p>Full Stack Developer</p>
+                <p>October 2024 - March 2025</p>
+                <p>Link: <a href="https://github.com/UMNGROVE/LemburPatikang">Link Github</a></p>
+            </li>
+            <li>
+                <p>Other Projects</p>
+                <p>Link: <a href="https://github.com/Ansellino">Link Github</a></p>
+            </li>
+        </ul>
+      </section>
+    </main>
+
+    <aside id="contact">
+        <h2>Contact</h2>
+        <h3>Ingin tahu lebih banyak dan ingin berkolaborasi?</h3>
+        <p>Saya selalu terbuka untuk proyek baru dan kolaborasi yang menarik. Jangan ragu untuk menghubungi saya!</p>
+        <address>
+            <p>Email: <a href="mailto:ansellino@gmail.com">ansellino@gmail.com</a></p>
+            <p>LinkedIn: <a href="https://www.linkedin.com/in/jeremy-ansellino-gunawan/">Jeremy Ansellino Gunawan</a></p>
+            <p>GitHub: <a href="https://github.com/Ansellino"> Ansellino </a> </p>
+        </address>
+        <p>Atau isi form di bawah</p>
+        <form action="mailto:ansellino@gmail.com" method="post" enctype="text/plain">
+            <fieldset>
+                <legend>CONTACT US</legend>
+                <label for="name">Nama:</label>
+                <input type="text" id="name" name="name" required />
+                <br /> 
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required />
+                <br />
+                <label for="message">Pesan:</label>
+                <textarea id="message" name="message" rows="4" required></textarea>
+                <br />
+                <button type="submit">Kirim</button>
+            </fieldset>
+        </form>
+    </aside>
+    <footer>
+      <p>
+        &copy; 2025 Jeremy Ansellino Gunawan. Hak Cipta Dilindungi
+        Undang-Undang.
+      </p>
+      <p>Dibuat dengan HTML Semantik.</p>
+    </footer>
+  </body>
+</html>
