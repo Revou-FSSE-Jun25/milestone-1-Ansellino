@@ -2,23 +2,53 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Jeremy Ansellino - Portfolio</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes"
+    />
     <meta
       name="description"
-      content="Portfolio Jeremy Ansellino - Software Engineer dengan keahlian Full Stack Development"
+      content="Portfolio Jeremy Ansellino - Software Engineer dengan pengalaman Full Stack Development"
     />
     <meta
       name="keywords"
-      content="Jeremy Ansellino, Software Engineer, Full Stack Developer, Portfolio"
+      content="software engineer, full stack developer, web developer, portfolio, Jeremy Ansellino"
     />
+    <meta name="author" content="Jeremy Ansellino Gunawan" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#667eea" />
+    <title>Jeremy Ansellino - Software Engineer Portfolio</title>
     <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
   </head>
   <body>
     <header>
+      <div class="logo-container">
+        <img
+          src="image/logo.png"
+          alt="Jeremy Ansellino Logo"
+          class="header-logo"
+        />
+        <span class="brand-text">Jeremy Ansellino</span>
+      </div>
       <nav>
+        <button
+          class="menu-toggle"
+          aria-label="Toggle navigation menu"
+          aria-expanded="false"
+        >
+          <i class="fas fa-bars"></i>
+        </button>
         <ul>
-          <li><a href="#homepage">Home Page</a></li>
           <li><a href="#aboutme">About Me</a></li>
           <li><a href="#education">Education</a></li>
           <li><a href="#experience">Experience</a></li>
@@ -30,203 +60,323 @@
       </nav>
     </header>
 
-    <main>
-      <section id="homepage">
-        <h1>
-          Capstone Project 1 - HTML Semantik Without CSS and JavaScript
-          <p>
-            <strong>Jeremy Ansellino</strong> <br />
-            Software Engineer
+    <main id="main-content">
+      <!-- Hero Section -->
+      <section id="homepage" class="hero-section">
+        <div class="hero-content">
+          <h1 class="hero-title">
+            <span class="hero-subtitle">Portfolio Jeremy Ansellino</span>
+            <span class="hero-name">Software Engineer</span>
+          </h1>
+          <figure class="profile-figure">
+            <img
+              src="image/1737618147295.jpeg"
+              alt="Foto Profile Jeremy Ansellino"
+              class="profile-img"
+            />
+            <figcaption>Jeremy Ansellino - Software Engineer</figcaption>
+          </figure>
+          <p class="intro-text">
+            Passionate Software Engineer dengan pengalaman dalam Full Stack
+            Development. Saya memiliki keahlian dalam berbagai teknologi modern
+            dan selalu antusias untuk belajar hal-hal baru dalam dunia
+            teknologi.
           </p>
-        </h1>
-        <h2>Selamat Datang di Portfolio saya di Capstone Project 1</h2>
-        <figure>
-          <img src="image/1737618147295.jpeg" alt="Foto Profile" />
-          <figcaption>Foto profile Jeremy Ansellino</figcaption>
-        </figure>
+        </div>
       </section>
-      <section id="aboutme">
-        <h2>About Me</h2>
-        <p>
-          Jeremy Ansellino Gunawan, akan menjadi software engineer dengan
-          critical thinking yang kuat, problem solving yang mantap &amp;
-          berintegritas.
-        </p>
+      <!-- About Section -->
+      <section id="aboutme" class="about-section">
+        <div class="section-container">
+          <h2 class="section-title">About Me</h2>
+          <p class="section-intro">
+            Jeremy Ansellino Gunawan, akan menjadi software engineer dengan
+            critical thinking yang kuat, problem solving yang mantap &amp;
+            berintegritas.
+          </p>
 
-        <article id="education">
-          <h3>Education</h3>
-          <ul>
-            <li>
-              <p>RevoU</p>
-              <p>Fullstack Software Engineer</p>
-              <p>Juni 2025 - Present</p>
-            </li>
-            <li>
-              <p>Bina Nusantara University</p>
-              <p>Master's degree, Computer Science</p>
-              <p>May 2023 - January 2025</p>
-              <p>Grade: 3,67 / 4,00</p>
-            </li>
-            <li>
-              <p>Bina Nusantara University</p>
-              <p>Bachelor's degree, Computer Science</p>
-              <p>September 2018 - April 2023</p>
-              <p>Grade: 3,30 / 4,00</p>
-            </li>
-            <li>
-              <p>
-                Bangkit Academy led by Google, Tokopedia, Gojek &amp; Traveloka
-                - Intern
+          <div class="about-grid">
+            <article id="education" class="about-card">
+              <h3 class="card-title">
+                <i class="fas fa-graduation-cap"></i> Education
+              </h3>
+              <ul class="timeline-list">
+                <li class="timeline-item">
+                  <div class="timeline-content">
+                    <h4>RevoU</h4>
+                    <p class="position">Fullstack Software Engineer</p>
+                    <p class="duration">Juni 2025 - Present</p>
+                  </div>
+                </li>
+                <li class="timeline-item">
+                  <div class="timeline-content">
+                    <h4>Bina Nusantara University</h4>
+                    <p class="position">Master's degree, Computer Science</p>
+                    <p class="duration">May 2023 - January 2025</p>
+                    <p class="grade">Grade: 3,67 / 4,00</p>
+                  </div>
+                </li>
+                <li class="timeline-item">
+                  <div class="timeline-content">
+                    <h4>Bina Nusantara University</h4>
+                    <p class="position">Bachelor's degree, Computer Science</p>
+                    <p class="duration">September 2018 - April 2023</p>
+                    <p class="grade">Grade: 3,30 / 4,00</p>
+                  </div>
+                </li>
+                <li class="timeline-item">
+                  <div class="timeline-content">
+                    <h4>
+                      Bangkit Academy led by Google, Tokopedia, Gojek &amp;
+                      Traveloka
+                    </h4>
+                    <p class="position">Cloud Computing - Intern</p>
+                    <p class="duration">February 2021 - August 2021</p>
+                    <p class="grade">Grade: 94,99 / 100</p>
+                  </div>
+                </li>
+              </ul>
+            </article>
+
+            <article id="experience" class="about-card">
+              <h3 class="card-title">
+                <i class="fas fa-briefcase"></i> Experience
+              </h3>
+              <ul class="timeline-list">
+                <li class="timeline-item">
+                  <div class="timeline-content">
+                    <h4>Google</h4>
+                    <p class="position">Google Cloud Arcade Fasilitator</p>
+                    <p class="duration">June 2025 - Present</p>
+                  </div>
+                </li>
+                <li class="timeline-item">
+                  <div class="timeline-content">
+                    <h4>REKBERKU.SITE</h4>
+                    <p class="position">Small Business Owner - Self-employed</p>
+                    <p class="duration">March 2025 - Present</p>
+                  </div>
+                </li>
+                <li class="timeline-item">
+                  <div class="timeline-content">
+                    <h4>TokoCrypto</h4>
+                    <p class="position">Analyst - Freelance</p>
+                    <p class="duration">April 2025 - June 2025</p>
+                  </div>
+                </li>
+                <li class="timeline-item">
+                  <div class="timeline-content">
+                    <h4>Prasunet Company</h4>
+                    <p class="position">Full Stack Developer - Intern</p>
+                    <p class="duration">March 2025 - April 2025</p>
+                  </div>
+                </li>
+                <li class="timeline-item">
+                  <div class="timeline-content">
+                    <h4>UMNGrove</h4>
+                    <p class="position">Full Stack Developer - Freelance</p>
+                    <p class="duration">October 2024 - March 2025</p>
+                  </div>
+                </li>
+                <li class="timeline-item">
+                  <div class="timeline-content">
+                    <h4>PASARJB</h4>
+                    <p class="position">Small Business Owner - Self-employed</p>
+                    <p class="duration">January 2018 - May 2024</p>
+                  </div>
+                </li>
+                <li class="timeline-item">
+                  <div class="timeline-content">
+                    <h4>CV. Mahkota Sarana</h4>
+                    <p class="position">Web Developer - Intern</p>
+                    <p class="duration">October 2021 - March 2022</p>
+                  </div>
+                </li>
+              </ul>
+            </article>
+
+            <article id="skills" class="about-card skills-card">
+              <h3 class="card-title"><i class="fas fa-code"></i> Skills</h3>
+              <div class="skills-grid">
+                <div class="skill-item">HTML, CSS, JavaScript</div>
+                <div class="skill-item">React.js, Next.js</div>
+                <div class="skill-item">Node.js, Express.js</div>
+                <div class="skill-item">Python, Django</div>
+                <div class="skill-item">SQL, MongoDB</div>
+                <div class="skill-item">Git & GitHub</div>
+                <div class="skill-item">Agile Methodologies</div>
+                <div class="skill-item">Problem Solving</div>
+                <div class="skill-item">Team Collaboration</div>
+                <div class="skill-item">Project Management</div>
+                <div class="skill-item">English & Bahasa Indonesia</div>
+              </div>
+            </article>
+
+            <article id="interests" class="about-card">
+              <h3 class="card-title"><i class="fas fa-heart"></i> Interests</h3>
+              <p class="interests-text">
+                Saya memiliki ketertarikan dalam pembuatan project bisnis,
+                menambah ilmu pengetahuan bisa dari Journal / AI / Article
+                Website / Youtube / Course Online dan berkomunikasi dengan orang
+                lain
               </p>
-              <p>Cloud Computing</p>
-              <p>February 2021 - August 2021</p>
-              <p>Grade: 94,99 / 100</p>
-            </li>
-          </ul>
-        </article>
-
-        <article id="experience">
-          <h3>Experience</h3>
-          <ul>
-            <li>
-              <p>REKBERKU.SITE</p>
-              <p>Small Business Owner - Self-employed</p>
-              <p>March 2025 - Present</p>
-            </li>
-            <li>
-              <p>Toko Crypto</p>
-              <p>Analyst - Freelance</p>
-              <p>April 2025 - June 2025</p>
-            </li>
-            <li>
-              <p>Prasunet Company</p>
-              <p>Full Stack Developer - Intern</p>
-              <p>March 2025 - April 2025</p>
-            </li>
-            <li>
-              <p>UMNGrove</p>
-              <p>Full Stack Developer - Freelance</p>
-              <p>October 2024 - March 2025</p>
-            </li>
-            <li>
-              <p>PASARJB</p>
-              <p>Small Business Owner - Self-employed</p>
-              <p>January 2018 - May 2024</p>
-            </li>
-            <li>
-              <p>CV. Mahkota Sarana</p>
-              <p>Web Developer - Intern</p>
-              <p>October 2021 - March 2022</p>
-            </li>
-          </ul>
-        </article>
-
-        <article id="skills">
-          <h3>Skills</h3>
-          <ul>
-            <li>HTML, CSS, JavaScript</li>
-            <li>React.js, Next.js</li>
-            <li>Node.js, Express.js</li>
-            <li>Python, Django</li>
-            <li>SQL, MongoDB</li>
-            <li>Git & GitHub</li>
-            <li>Agile Methodologies</li>
-            <li>Problem Solving & Critical Thinking</li>
-            <li>Team Collaboration & Communication</li>
-            <li>Project Management</li>
-            <li>English & Bahasa Indonesia</li>
-          </ul>
-        </article>
-
-        <article id="interests">
-          <h3>Interests</h3>
-          <p>
-            Saya memiliki ketertarikan dalam pembuatan project bisnis, menambah
-            ilmu pengetahuan bisa dari Journal / AI / Article Website / Youtube
-            / Course Online dan berkomunikasi dengan orang lain
-          </p>
-        </article>
+            </article>
+          </div>
+        </div>
       </section>
-      <section id="project">
-        <h2>Projects</h2>
-        <ul>
-          <li>
-            <p>REKBERKU.SITE</p>
-            <p>CEO & Project Leader & Community Manager</p>
-            <p>March 2025 - Present</p>
-            <p>Link: <a href="https://rekberku.site/">Link Website</a></p>
-          </li>
-          <li>
-            <p>PASARJB.COM</p>
-            <p>CEO & Project Leader & Community Manager</p>
-            <p>January 2018 - May 2024</p>
-            <p>Link: <a href="https://pasarjb.com/">Link Website</a></p>
-          </li>
-          <li>
-            <p>Lembur Mangrove Patikang</p>
-            <p>Full Stack Developer</p>
-            <p>October 2024 - March 2025</p>
-            <p>
-              Link:
-              <a href="https://github.com/UMNGROVE/LemburPatikang"
-                >Link Github</a
+
+      <!-- Projects Section -->
+      <section id="project" class="projects-section">
+        <div class="section-container">
+          <h2 class="section-title">
+            <i class="fas fa-project-diagram"></i> Projects
+          </h2>
+          <div class="projects-grid">
+            <div class="project-card">
+              <h3>REKBERKU.SITE</h3>
+              <p class="project-role">
+                CEO & Project Leader & Community Manager
+              </p>
+              <p class="project-duration">March 2025 - Present</p>
+              <a
+                href="https://rekberku.site/"
+                class="project-link"
+                target="_blank"
               >
-            </p>
-          </li>
-          <li>
-            <p>Other Projects</p>
-            <p>Link: <a href="https://github.com/Ansellino">Link Github</a></p>
-          </li>
-        </ul>
+                <i class="fas fa-external-link-alt"></i> Visit Website
+              </a>
+            </div>
+            <div class="project-card">
+              <h3>PASARJB.COM</h3>
+              <p class="project-role">
+                CEO & Project Leader & Community Manager
+              </p>
+              <p class="project-duration">January 2018 - May 2024</p>
+              <a
+                href="https://pasarjb.com/"
+                class="project-link"
+                target="_blank"
+              >
+                <i class="fas fa-external-link-alt"></i> Visit Website
+              </a>
+            </div>
+            <div class="project-card">
+              <h3>Lembur Mangrove Patikang</h3>
+              <p class="project-role">Full Stack Developer</p>
+              <p class="project-duration">October 2024 - March 2025</p>
+              <a
+                href="https://github.com/UMNGROVE/LemburPatikang"
+                class="project-link"
+                target="_blank"
+              >
+                <i class="fab fa-github"></i> View on GitHub
+              </a>
+            </div>
+            <div class="project-card">
+              <h3>Other Projects</h3>
+              <p class="project-role">Various Development Projects</p>
+              <p class="project-duration">Ongoing</p>
+              <a
+                href="https://github.com/Ansellino"
+                class="project-link"
+                target="_blank"
+              >
+                <i class="fab fa-github"></i> View GitHub Profile
+              </a>
+            </div>
+          </div>
+        </div>
       </section>
     </main>
 
-    <aside id="contact">
-      <h2>Contact</h2>
-      <h3>Ingin tahu lebih banyak dan ingin berkolaborasi?</h3>
-      <p>
-        Saya selalu terbuka untuk proyek baru dan kolaborasi yang menarik.
-        Jangan ragu untuk menghubungi saya!
-      </p>
-      <address>
-        <p>
-          Email: <a href="mailto:ansellino@gmail.com">ansellino@gmail.com</a>
-        </p>
-        <p>
-          LinkedIn:
-          <a href="https://www.linkedin.com/in/jeremy-ansellino-gunawan/"
-            >Jeremy Ansellino Gunawan</a
-          >
-        </p>
-        <p>GitHub: <a href="https://github.com/Ansellino"> Ansellino </a></p>
-      </address>
-      <p>Atau isi form di bawah</p>
-      <form
-        action="mailto:ansellino@gmail.com"
-        method="post"
-        enctype="text/plain"
-      >
-        <fieldset>
-          <legend>CONTACT US</legend>
-          <label for="name">Nama:</label>
-          <input type="text" id="name" name="name" required />
-          <br />
-          <label for="email">Email:</label>
-          <input type="email" id="email" name="email" required />
-          <br />
-          <label for="message">Pesan:</label>
-          <textarea id="message" name="message" rows="4" required></textarea>
-          <br />
-          <button type="submit">Kirim</button>
-        </fieldset>
-      </form>
+    <!-- Contact Section -->
+    <aside id="contact" class="contact-section">
+      <div class="section-container">
+        <h2 class="section-title"><i class="fas fa-envelope"></i> Contact</h2>
+        <div class="contact-content">
+          <div class="contact-info">
+            <h3>Ingin tahu lebih banyak dan ingin berkolaborasi?</h3>
+            <p>
+              Saya selalu terbuka untuk proyek baru dan kolaborasi yang menarik.
+              Jangan ragu untuk menghubungi saya!
+            </p>
+            <address class="contact-links">
+              <div class="contact-item">
+                <i class="fas fa-envelope"></i>
+                <a href="mailto:ansellino@gmail.com">ansellino@gmail.com</a>
+              </div>
+              <div class="contact-item">
+                <i class="fab fa-linkedin"></i>
+                <a
+                  href="https://www.linkedin.com/in/jeremy-ansellino-gunawan/"
+                  target="_blank"
+                >
+                  Jeremy Ansellino Gunawan
+                </a>
+              </div>
+              <div class="contact-item">
+                <i class="fab fa-github"></i>
+                <a href="https://github.com/Ansellino" target="_blank"
+                  >Ansellino</a
+                >
+              </div>
+            </address>
+          </div>
+
+          <div class="contact-form-container">
+            <h3>Atau isi form di bawah</h3>
+            <form
+              action="mailto:ansellino@gmail.com"
+              method="post"
+              enctype="text/plain"
+              class="contact-form"
+            >
+              <fieldset>
+                <legend>CONTACT US</legend>
+                <div class="form-group">
+                  <label for="name">Nama:</label>
+                  <input type="text" id="name" name="name" required />
+                </div>
+                <div class="form-group">
+                  <label for="email">Email:</label>
+                  <input type="email" id="email" name="email" required />
+                </div>
+                <div class="form-group">
+                  <label for="message">Pesan:</label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    rows="4"
+                    required
+                  ></textarea>
+                </div>
+                <button type="submit" class="submit-btn">
+                  <i class="fas fa-paper-plane"></i> Kirim Pesan
+                </button>
+              </fieldset>
+            </form>
+          </div>
+        </div>
+      </div>
     </aside>
-    <footer>
-      <p>
-        &copy; 2025 Jeremy Ansellino Gunawan. Hak Cipta Dilindungi
-        Undang-Undang.
-      </p>
-      <p>Dibuat dengan HTML Semantik.</p>
+
+    <!-- Back to Top Button -->
+    <button
+      id="backToTopBtn"
+      class="back-to-top"
+      aria-label="Kembali ke atas"
+      title="Kembali ke atas"
+    >
+      <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <footer class="main-footer">
+      <div class="footer-content">
+        <p>
+          &copy; 2025 Jeremy Ansellino Gunawan. Hak Cipta Dilindungi
+          Undang-Undang.
+        </p>
+        <p>Dibuat dengan HTML Semantik, CSS & JavaScript.</p>
+      </div>
     </footer>
     <script src="script.js"></script>
   </body>
