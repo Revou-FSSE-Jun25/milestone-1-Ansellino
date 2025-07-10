@@ -422,28 +422,72 @@ function initializeScrollAnimations() {
 // ===== ACTIVE NAVIGATION HIGHLIGHTING =====
 function initializeActiveNavigation() {
   function updateActiveNavLink() {
-    const sections = document.querySelectorAll("main section");
     const navLinks = document.querySelectorAll('nav a[href^="#"]');
+    const headerOffset = document.querySelector("header").offsetHeight + 50;
 
-    let current = "";
-    const headerOffset = document.querySelector("header").offsetHeight + 100;
+    // Define sections that correspond to navigation links
+    const navigationSections = [
+      { id: "homepage", element: document.getElementById("homepage") },
+      { id: "aboutme", element: document.getElementById("aboutme") },
+      {
+        id: "education",
+        element: document.getElementById("education"),
+        parentNav: "aboutme",
+      },
+      {
+        id: "experience",
+        element: document.getElementById("experience"),
+        parentNav: "aboutme",
+      },
+      {
+        id: "skills",
+        element: document.getElementById("skills"),
+        parentNav: "aboutme",
+      },
+      {
+        id: "interests",
+        element: document.getElementById("interests"),
+        parentNav: "aboutme",
+      },
+      { id: "project", element: document.getElementById("project") },
+      { id: "contact", element: document.getElementById("contact") },
+    ];
 
-    sections.forEach((section) => {
-      const sectionTop = section.offsetTop;
-      if (window.scrollY >= sectionTop - headerOffset) {
-        current = section.getAttribute("id");
+    let activeSection = "";
+    let scrollPosition = window.scrollY + headerOffset;
+
+    // Find the current section
+    for (let i = navigationSections.length - 1; i >= 0; i--) {
+      const section = navigationSections[i];
+      if (section.element) {
+        const sectionTop = section.element.offsetTop;
+        if (scrollPosition >= sectionTop) {
+          // If this is a subsection of aboutme, use the parent nav
+          activeSection = section.parentNav || section.id;
+          break;
+        }
       }
-    });
+    }
 
+    // Special handling for the very top of the page
+    if (window.scrollY < 100) {
+      activeSection = "homepage";
+    }
+
+    // Update nav links
     navLinks.forEach((link) => {
       link.classList.remove("active");
-      if (link.getAttribute("href") === `#${current}`) {
+      const href = link.getAttribute("href");
+      if (href === `#${activeSection}`) {
         link.classList.add("active");
       }
     });
   }
 
-  // Throttle scroll events for better performance
+  // Initial call
+  updateActiveNavLink();
+
+  // Throttled scroll event listener
   let scrollTimeout;
   window.addEventListener(
     "scroll",
@@ -455,6 +499,9 @@ function initializeActiveNavigation() {
     },
     { passive: true }
   );
+
+  // Also update on resize
+  window.addEventListener("resize", updateActiveNavLink);
 }
 
 // ===== FORM ENHANCEMENTS =====
