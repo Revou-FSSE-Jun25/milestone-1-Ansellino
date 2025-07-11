@@ -1027,9 +1027,12 @@ nav a:focus::after {
   z-index: 1000;
   opacity: 0;
   transform: translateY(100px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.back-to-top.visible {
+.back-to-top.show {
   opacity: 1;
   transform: translateY(0);
 }
