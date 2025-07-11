@@ -11,7 +11,7 @@ html {
 }
 
 body {
-  font-family: "Poppins", sans-serif;
+  font-family: "Baloo 2", sans-serif;
   line-height: 1.6;
   color: #333;
   background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
@@ -491,7 +491,7 @@ nav a:focus::after {
 }
 
 .timeline-content h4 {
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 600;
   color: #333;
   margin-bottom: 0.5rem;
@@ -513,6 +513,105 @@ nav a:focus::after {
   font-size: 0.9rem;
   color: #555;
   font-weight: 500;
+}
+
+/* ===== TIMELINE CONTENT EFFECTS ===== */
+.timeline-content {
+  background: rgba(255, 255, 255, 0.8);
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid rgba(102, 126, 234, 0.1);
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.timeline-content::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(102, 126, 234, 0.1),
+    transparent
+  );
+  transition: left 0.6s ease;
+}
+
+.timeline-content:hover::before {
+  left: 100%;
+}
+
+.timeline-content:hover {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: rgba(102, 126, 234, 0.3);
+  transform: translateX(8px) translateY(-2px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.15),
+    0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.timeline-content:hover h4 {
+  color: #667eea;
+  transform: translateY(-1px);
+}
+
+.timeline-content:hover .position {
+  color: #764ba2;
+  font-weight: 600;
+}
+
+.timeline-content:hover .duration {
+  color: #555;
+}
+
+.timeline-content:hover .grade {
+  color: #667eea;
+  font-weight: 600;
+}
+
+/* Enhanced timeline item animation */
+.timeline-item {
+  opacity: 0;
+  transform: translateX(-20px);
+  animation: slideInLeft 0.6s ease forwards;
+}
+
+.timeline-item:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.timeline-item:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.timeline-item:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.timeline-item:nth-child(4) {
+  animation-delay: 0.4s;
+}
+.timeline-item:nth-child(5) {
+  animation-delay: 0.5s;
+}
+.timeline-item:nth-child(6) {
+  animation-delay: 0.6s;
+}
+.timeline-item:nth-child(7) {
+  animation-delay: 0.7s;
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 /* ===== SKILLS GRID ===== */
@@ -538,14 +637,14 @@ nav a:focus::after {
   font-weight: 500;
   color: #333;
   border: 1px solid rgba(102, 126, 234, 0.2);
-  transition: all 0.3s ease;
+  transition: all 0.15s ease;
 }
 
 .skill-item:hover {
   background: linear-gradient(135deg, #667eea, #764ba2);
   color: white;
-  transform: translateY(-3px);
-  box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+  transform: translateY(-1px);
+  box-shadow: 0 5px 15px rgba(102, 126, 234, 0.25);
 }
 
 /* ===== INTERESTS SECTION ===== */
@@ -844,7 +943,7 @@ nav a:focus::after {
   padding: 1rem;
   border: 2px solid rgba(102, 126, 234, 0.2);
   border-radius: 12px;
-  font-family: "Poppins", sans-serif;
+  font-family: "Baloo 2", sans-serif;
   font-size: 1rem;
   transition: all 0.3s ease;
   background: white;
@@ -1235,6 +1334,18 @@ nav a:focus::after {
 
   .timeline-content h4 {
     font-size: 1rem;
+  }
+
+  /* Mobile timeline content effects */
+  .timeline-content {
+    padding: 1.2rem;
+    border-radius: 10px;
+  }
+
+  .timeline-content:hover {
+    transform: translateX(5px) translateY(-1px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.12),
+      0 2px 5px rgba(0, 0, 0, 0.08);
   }
 
   .skills-grid {
