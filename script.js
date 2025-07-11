@@ -423,13 +423,16 @@ function initializeSmoothScrolling() {
 
         case "skills":
           targetElement = document.getElementById("skills");
-          // Calculate position to show skills in viewport
+          // Scroll to skills article for optimal visibility
           if (targetElement) {
             const aboutmeSection = document.getElementById("aboutme");
             if (aboutmeSection) {
               const skillsOffset = targetElement.offsetTop;
-              scrollOffset = skillsOffset - 150; // Show skills with some padding
+              scrollOffset = skillsOffset - 100; // Scroll to skills with optimal padding
               targetElement = aboutmeSection;
+              console.log(
+                `⚡ Skills scroll target: skills article at offset ${scrollOffset}`
+              );
             }
           }
           console.log("📍 Scrolling to Skills article");
@@ -719,10 +722,40 @@ function initializeActiveNavigation() {
                 foundActiveSection = "interests";
                 console.log("✅ INTERESTS active");
               }
-              // Skills detection
-              else if (scrollPosition >= skillsTop - 30) {
-                foundActiveSection = "skills";
-                console.log("✅ SKILLS active");
+              // Skills detection - aktif ketika user menyentuh article id="skills"
+              else if (scrollPosition >= skillsTop - 50) {
+                // Cek apakah user sudah menyentuh skills article
+                const skillsEl = document.getElementById("skills");
+                if (skillsEl) {
+                  const skillsArticleTop =
+                    skillsEl.offsetTop + aboutmeSection.offsetTop;
+                  const skillsTrigger = skillsArticleTop - 80; // Trigger 80px sebelum skills article
+
+                  console.log(`⚡ Skills Analysis:`, {
+                    skillsArticleTop,
+                    skillsTrigger,
+                    currentScroll: scrollPosition,
+                  });
+
+                  if (scrollPosition >= skillsTrigger) {
+                    foundActiveSection = "skills";
+                    console.log(
+                      "✅ SKILLS active (user reached skills article)"
+                    );
+                  } else {
+                    // Jika belum sampai skills article, cek experience logic
+                    foundActiveSection = "experiences";
+                    console.log(
+                      "💼 EXPERIENCES still active (before skills article)"
+                    );
+                  }
+                } else {
+                  // Fallback ke logic lama jika skills tidak ditemukan
+                  foundActiveSection = "skills";
+                  console.log(
+                    "✅ SKILLS active (fallback - skills article not found)"
+                  );
+                }
               }
               // Experience detection - aktif ketika user menyentuh timeline TokoCrypto
               // TokoCrypto adalah timeline item ke-3 dalam experience section
@@ -1145,11 +1178,45 @@ function testExperienceNavbar() {
   }
 }
 
+// Test Skills navbar specifically
+function testSkillsNavbar() {
+  console.log("⚡ Testing Skills navbar activation...");
+
+  // First, let's check the skills article position
+  const skillsEl = document.getElementById("skills");
+  const aboutmeSection = document.getElementById("aboutme");
+
+  if (skillsEl && aboutmeSection) {
+    const skillsArticleTop = skillsEl.offsetTop + aboutmeSection.offsetTop;
+    const skillsTrigger = skillsArticleTop - 80;
+
+    console.log(`📊 Skills Analysis:`, {
+      skillsArticleTop,
+      skillsTrigger,
+      currentScroll: window.scrollY,
+    });
+
+    // Simulate scroll to skills article area
+    window.scrollTo({
+      top: skillsTrigger + 10,
+      behavior: "smooth",
+    });
+
+    setTimeout(() => {
+      console.log(`📍 Scrolled to: ${window.scrollY}`);
+      console.log(`🎯 Should be Skills active now (skills article visible)`);
+    }, 1000);
+  } else {
+    console.error("❌ Skills article not found");
+  }
+}
+
 // Add to window for manual testing
 window.testNavbarActivation = testNavbarActivation;
 window.testNavbarClicks = testNavbarClicks;
 window.testEducationNavbar = testEducationNavbar;
 window.testExperienceNavbar = testExperienceNavbar;
+window.testSkillsNavbar = testSkillsNavbar;
 
 // ===== UTILITY FUNCTIONS =====
 
