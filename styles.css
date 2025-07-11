@@ -1333,47 +1333,75 @@ nav a:focus::after {
   }
 
   .hero-section {
-    padding: 1.5rem 1rem;
+    padding: 2rem 1.5rem;
     height: 100vh;
     background-attachment: scroll;
     background-position: center top;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .hero-section::before {
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.12);
   }
 
   .hero-content {
-    transform: translateY(-4vh);
+    transform: translateY(-2vh);
     flex-direction: column;
-    gap: 2rem;
+    gap: 2.5rem;
     text-align: center;
+    max-width: 100%;
+    padding: 0 1rem;
   }
 
   .hero-left {
     flex: none;
+    order: 1;
   }
 
   .hero-right {
     text-align: center;
+    order: 2;
+    max-width: 100%;
+  }
+
+  .hero-title {
+    margin-bottom: 1.2rem;
   }
 
   .hero-name {
-    font-size: 2.6rem;
+    font-size: 2.4rem;
+    line-height: 1.2;
+    margin-bottom: 0.8rem;
   }
 
   .hero-subtitle {
-    font-size: 1.9rem;
+    font-size: 1.6rem;
+    margin-bottom: 0.6rem;
+    line-height: 1.3;
   }
 
   .profile-img {
-    width: 200px;
-    height: 200px;
+    width: 220px;
+    height: 220px;
+    border: 4px solid white;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+  }
+
+  .profile-figure figcaption {
+    margin-top: 0.8rem;
+    font-size: 0.85rem;
+    font-weight: 500;
   }
 
   .intro-text {
-    font-size: 1.1rem;
-    margin: 1rem 0 0 0;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    margin: 1.2rem 0 0 0;
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .about-section {
@@ -1545,46 +1573,74 @@ nav a:focus::after {
   }
 
   .hero-section {
-    padding: 1rem 0.8rem;
+    padding: 1.5rem 1rem;
     background-position: center center;
     height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .hero-section::before {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.18);
   }
 
   .hero-content {
-    transform: translateY(-3vh);
+    transform: translateY(-1vh);
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 2rem;
     text-align: center;
+    max-width: 100%;
+    padding: 0 0.5rem;
   }
 
   .hero-left {
     flex: none;
+    order: 1;
   }
 
   .hero-right {
     text-align: center;
+    order: 2;
+    max-width: 100%;
+  }
+
+  .hero-title {
+    margin-bottom: 1rem;
   }
 
   .hero-name {
-    font-size: 2.2rem;
+    font-size: 2rem;
+    line-height: 1.1;
+    margin-bottom: 0.6rem;
   }
 
   .hero-subtitle {
-    font-size: 1.6rem;
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
   }
 
   .profile-img {
-    width: 170px;
-    height: 170px;
+    width: 180px;
+    height: 180px;
+    border: 3px solid white;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+  }
+
+  .profile-figure figcaption {
+    margin-top: 0.6rem;
+    font-size: 0.8rem;
+    font-weight: 500;
   }
 
   .intro-text {
-    font-size: 1rem;
+    font-size: 0.95rem;
+    line-height: 1.5;
     margin: 1rem 0 0 0;
+    max-width: 95%;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .about-card {
@@ -1705,6 +1761,83 @@ nav a:focus::after {
 
   .footer-content p {
     font-size: 0.8rem;
+  }
+}
+
+/* ===== ENHANCED MOBILE STYLES (Very Small Screens) ===== */
+@media (max-width: 375px) {
+  .hero-section {
+    padding: 1rem 0.8rem;
+    min-height: 100vh;
+  }
+
+  .hero-content {
+    transform: translateY(0);
+    gap: 1.8rem;
+    padding: 0 0.3rem;
+  }
+
+  .hero-name {
+    font-size: 1.8rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .profile-img {
+    width: 160px;
+    height: 160px;
+    border: 2px solid white;
+  }
+
+  .profile-figure figcaption {
+    font-size: 0.75rem;
+    margin-top: 0.5rem;
+  }
+
+  .intro-text {
+    font-size: 0.9rem;
+    line-height: 1.4;
+    margin-top: 0.8rem;
+    max-width: 98%;
+  }
+}
+
+/* ===== LANDSCAPE MOBILE OPTIMIZATION ===== */
+@media (max-height: 600px) and (orientation: landscape) {
+  .hero-section {
+    height: auto;
+    min-height: 100vh;
+    padding: 1.5rem 1rem;
+  }
+
+  .hero-content {
+    transform: translateY(0);
+    gap: 1.5rem;
+    min-height: auto;
+  }
+
+  .profile-img {
+    width: 140px;
+    height: 140px;
+  }
+
+  .hero-name {
+    font-size: 2rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.3rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .intro-text {
+    font-size: 0.95rem;
+    margin-top: 0.6rem;
   }
 }
 
