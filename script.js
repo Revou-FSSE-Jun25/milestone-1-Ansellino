@@ -423,71 +423,83 @@ function initializeScrollAnimations() {
 function initializeActiveNavigation() {
   function updateActiveNavLink() {
     const navLinks = document.querySelectorAll('nav a[href^="#"]');
-    const headerOffset = document.querySelector("header").offsetHeight + 50;
-
-    // Define sections that correspond to navigation links
-    const navigationSections = [
-      { id: "homepage", element: document.getElementById("homepage") },
-      { id: "aboutme", element: document.getElementById("aboutme") },
-      {
-        id: "education",
-        element: document.getElementById("education"),
-        parentNav: "aboutme",
-      },
-      {
-        id: "experience",
-        element: document.getElementById("experience"),
-        parentNav: "aboutme",
-      },
-      {
-        id: "skills",
-        element: document.getElementById("skills"),
-        parentNav: "aboutme",
-      },
-      {
-        id: "interests",
-        element: document.getElementById("interests"),
-        parentNav: "aboutme",
-      },
-      { id: "project", element: document.getElementById("project") },
-      { id: "contact", element: document.getElementById("contact") },
-    ];
+    const headerOffset = 100; // Fixed offset for better detection
 
     let activeSection = "";
-    let scrollPosition = window.scrollY + headerOffset;
+    const scrollPosition = window.scrollY + headerOffset;
 
-    // Find the current section
-    for (let i = navigationSections.length - 1; i >= 0; i--) {
-      const section = navigationSections[i];
-      if (section.element) {
-        const sectionTop = section.element.offsetTop;
-        if (scrollPosition >= sectionTop) {
-          // If this is a subsection of aboutme, use the parent nav
-          activeSection = section.parentNav || section.id;
-          break;
+    // Special handling for homepage - no active nav when at top
+    if (window.scrollY < 150) {
+      activeSection = ""; // No active section for homepage
+    } else {
+      // Get all sections in order of priority (most specific first)
+      const sectionsToCheck = [
+        { id: "contact", element: document.getElementById("contact") },
+        { id: "projects", element: document.getElementById("projects") },
+        { id: "interests", element: document.getElementById("interests") },
+        { id: "skills", element: document.getElementById("skills") },
+        { id: "experiences", element: document.getElementById("experiences") },
+        { id: "educations", element: document.getElementById("educations") },
+        { id: "aboutme", element: document.getElementById("aboutme") },
+      ];
+
+      // Check each section from bottom to top
+      for (let i = 0; i < sectionsToCheck.length; i++) {
+        const section = sectionsToCheck[i];
+        if (section.element) {
+          const sectionTop = section.element.offsetTop;
+
+          // For subsections within aboutme, use more precise detection
+          if (
+            ["educations", "experiences", "skills", "interests"].includes(
+              section.id
+            )
+          ) {
+            const rect = section.element.getBoundingClientRect();
+            const elementTop = window.scrollY + rect.top;
+            const elementHeight = rect.height;
+            const viewportMiddle = window.scrollY + window.innerHeight / 2;
+
+            // Check if the section is visible in the viewport
+            if (
+              viewportMiddle >= elementTop &&
+              viewportMiddle < elementTop + elementHeight
+            ) {
+              activeSection = section.id;
+              break;
+            }
+          } else {
+            // For main sections (aboutme, projects, contact)
+            if (scrollPosition >= sectionTop - 100) {
+              activeSection = section.id;
+              break;
+            }
+          }
         }
       }
-    }
-
-    // Special handling for the very top of the page
-    if (window.scrollY < 100) {
-      activeSection = "homepage";
     }
 
     // Update nav links
     navLinks.forEach((link) => {
       link.classList.remove("active");
       const href = link.getAttribute("href");
-      if (href === `#${activeSection}`) {
+      if (activeSection && href === `#${activeSection}`) {
         link.classList.add("active");
       }
     });
+
+    // Debug info
+    console.log(
+      `Active section: ${activeSection || "none"}, Scroll: ${Math.round(
+        window.scrollY
+      )}`
+    );
   }
 
   // Initial call
   updateActiveNavLink();
 
-  // Throttled scroll event listener
+  // Throttled scroll event listener for better performance
   let scrollTimeout;
   window.addEventListener(
     "scroll",
@@ -495,7 +507,7 @@ function initializeActiveNavigation() {
       if (scrollTimeout) {
         clearTimeout(scrollTimeout);
       }
-      scrollTimeout = setTimeout(updateActiveNavLink, 10);
+      scrollTimeout = setTimeout(updateActiveNavLink, 100);
     },
     { passive: true }
   );
