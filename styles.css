@@ -279,9 +279,9 @@ nav a:focus::after {
   background-position: center center;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  padding: 6rem 2rem;
+  padding: 2rem 2rem;
   text-align: center;
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -300,14 +300,31 @@ nav a:focus::after {
 }
 
 .hero-content {
-  max-width: 800px;
+  max-width: 1000px;
   margin: 0 auto;
   position: relative;
   z-index: 2;
+  transform: translateY(-6vh);
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+  min-height: 60vh;
+}
+
+.hero-left {
+  flex: 0 0 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-right {
+  flex: 1;
+  text-align: left;
 }
 
 .hero-title {
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 .hero-subtitle {
@@ -315,31 +332,32 @@ nav a:focus::after {
   font-size: 2.2rem;
   font-weight: 700;
   color: #000;
-  margin-bottom: 1rem;
+  margin-bottom: 0.8rem;
   letter-spacing: 1px;
   text-transform: uppercase;
 }
 
 .hero-name {
   display: block;
-  font-size: 3.5rem;
+  font-size: 3.2rem;
   font-weight: 700;
   color: #000;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
   line-height: 1.1;
 }
 
 .profile-figure {
-  margin: 3rem 0;
+  margin: 0;
+  position: relative;
 }
 
 .profile-img {
-  width: 250px;
-  height: 250px;
+  width: 280px;
+  height: 280px;
   border-radius: 50%;
   object-fit: cover;
   border: 6px solid white;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
   transition: all 0.3s ease;
 }
 
@@ -352,17 +370,18 @@ nav a:focus::after {
   margin-top: 1rem;
   font-style: italic;
   color: #000;
-  font-weight: 700;
-  font-size: 1rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-align: center;
 }
 
 .intro-text {
   font-size: 1.2rem;
-  line-height: 1.8;
+  line-height: 1.7;
   color: #000;
-  font-weight: 700;
-  max-width: 600px;
-  margin: 0 auto;
+  font-weight: 600;
+  max-width: none;
+  margin: 1.5rem 0 0 0;
 }
 
 /* ===== ABOUT SECTION ===== */
@@ -1314,8 +1333,8 @@ nav a:focus::after {
   }
 
   .hero-section {
-    padding: 3rem 1rem;
-    min-height: 80vh;
+    padding: 1.5rem 1rem;
+    height: 100vh;
     background-attachment: scroll;
     background-position: center top;
   }
@@ -1324,21 +1343,37 @@ nav a:focus::after {
     background: rgba(255, 255, 255, 0.15);
   }
 
+  .hero-content {
+    transform: translateY(-4vh);
+    flex-direction: column;
+    gap: 2rem;
+    text-align: center;
+  }
+
+  .hero-left {
+    flex: none;
+  }
+
+  .hero-right {
+    text-align: center;
+  }
+
   .hero-name {
-    font-size: 2.5rem;
+    font-size: 2.6rem;
   }
 
   .hero-subtitle {
-    font-size: 1.8rem;
+    font-size: 1.9rem;
   }
 
   .profile-img {
-    width: 180px;
-    height: 180px;
+    width: 200px;
+    height: 200px;
   }
 
   .intro-text {
     font-size: 1.1rem;
+    margin: 1rem 0 0 0;
   }
 
   .about-section {
@@ -1510,26 +1545,46 @@ nav a:focus::after {
   }
 
   .hero-section {
-    padding: 2.5rem 0.8rem;
+    padding: 1rem 0.8rem;
     background-position: center center;
-    min-height: 80vh;
+    height: 100vh;
   }
 
   .hero-section::before {
     background: rgba(255, 255, 255, 0.2);
   }
 
+  .hero-content {
+    transform: translateY(-3vh);
+    flex-direction: column;
+    gap: 1.5rem;
+    text-align: center;
+  }
+
+  .hero-left {
+    flex: none;
+  }
+
+  .hero-right {
+    text-align: center;
+  }
+
   .hero-name {
     font-size: 2.2rem;
   }
 
+  .hero-subtitle {
+    font-size: 1.6rem;
+  }
+
   .profile-img {
-    width: 150px;
-    height: 150px;
+    width: 170px;
+    height: 170px;
   }
 
   .intro-text {
     font-size: 1rem;
+    margin: 1rem 0 0 0;
   }
 
   .about-card {
