@@ -366,9 +366,13 @@ nav a:focus::after {
   text-align: center;
   font-size: 1.2rem;
   color: #666;
-  max-width: 600px;
-  margin: 0 auto 4rem auto;
+  max-width: 800px;
+  margin: 0 auto 2rem auto;
   line-height: 1.8;
+}
+
+.section-intro:last-of-type {
+  margin-bottom: 4rem;
 }
 
 .about-grid {
@@ -376,6 +380,23 @@ nav a:focus::after {
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
   margin-top: 3rem;
+}
+
+/* Order for consistent layout across devices */
+#educations {
+  order: 1;
+}
+
+#experiences {
+  order: 2;
+}
+
+#skills {
+  order: 3;
+}
+
+#interests {
+  order: 4;
 }
 
 .about-card {

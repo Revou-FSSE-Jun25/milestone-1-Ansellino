@@ -352,17 +352,120 @@ function initializeSmoothScrolling() {
     link.addEventListener("click", function (e) {
       e.preventDefault();
 
-      const targetId = this.getAttribute("href");
-      const targetSection = document.querySelector(targetId);
+      const targetId = this.getAttribute("href").substring(1); // Remove #
+      console.log(`🎯 Navbar clicked: ${targetId}`);
 
-      if (targetSection) {
-        const headerHeight = document.querySelector("header").offsetHeight;
-        const targetPosition = targetSection.offsetTop - headerHeight - 20;
+      let targetElement = null;
+      let scrollOffset = 120; // Default offset for header
+
+      // Smart targeting based on clicked navbar item
+      switch (targetId) {
+        case "aboutme":
+          targetElement = document.getElementById("aboutme");
+          console.log("📍 Scrolling to About Me section");
+          break;
+
+        case "educations":
+          targetElement = document.getElementById("educations");
+          // Scroll to about-grid area for better article visibility
+          const aboutmeSection = document.getElementById("aboutme");
+          const aboutGrid = aboutmeSection
+            ? aboutmeSection.querySelector(".about-grid")
+            : null;
+          if (aboutGrid) {
+            targetElement = aboutmeSection;
+            scrollOffset = aboutGrid.offsetTop - 50; // Scroll to grid area
+          }
+          console.log("📍 Scrolling to Education article");
+          break;
+
+        case "experiences":
+          targetElement = document.getElementById("experiences");
+          // Calculate position to show experience in middle of viewport
+          if (targetElement) {
+            const aboutmeSection = document.getElementById("aboutme");
+            if (aboutmeSection) {
+              const experienceOffset = targetElement.offsetTop;
+              const experienceHeight = targetElement.offsetHeight;
+              scrollOffset =
+                experienceOffset -
+                window.innerHeight / 2 +
+                experienceHeight / 2;
+              targetElement = aboutmeSection;
+            }
+          }
+          console.log("📍 Scrolling to Experience article");
+          break;
+
+        case "skills":
+          targetElement = document.getElementById("skills");
+          // Calculate position to show skills in viewport
+          if (targetElement) {
+            const aboutmeSection = document.getElementById("aboutme");
+            if (aboutmeSection) {
+              const skillsOffset = targetElement.offsetTop;
+              scrollOffset = skillsOffset - 150; // Show skills with some padding
+              targetElement = aboutmeSection;
+            }
+          }
+          console.log("📍 Scrolling to Skills article");
+          break;
+
+        case "interests":
+          targetElement = document.getElementById("interests");
+          // Calculate position to show interests in viewport
+          if (targetElement) {
+            const aboutmeSection = document.getElementById("aboutme");
+            if (aboutmeSection) {
+              const interestsOffset = targetElement.offsetTop;
+              scrollOffset = interestsOffset - 150; // Show interests with some padding
+              targetElement = aboutmeSection;
+            }
+          }
+          console.log("📍 Scrolling to Interests article");
+          break;
+
+        case "projects":
+          targetElement = document.getElementById("projects");
+          console.log("📍 Scrolling to Projects section");
+          break;
+
+        case "contact":
+          targetElement = document.getElementById("contact");
+          console.log("📍 Scrolling to Contact section");
+          break;
+
+        default:
+          targetElement = document.querySelector(`#${targetId}`);
+          console.log(`📍 Scrolling to default target: ${targetId}`);
+      }
+
+      if (targetElement) {
+        let targetPosition;
+
+        // Calculate final scroll position
+        if (typeof scrollOffset === "number" && scrollOffset > 200) {
+          // For articles within About Me, use calculated offset
+          targetPosition = targetElement.offsetTop + scrollOffset;
+        } else {
+          // For regular sections, use standard offset
+          const headerHeight = document.querySelector("header").offsetHeight;
+          targetPosition = targetElement.offsetTop - headerHeight - 20;
+        }
+
+        console.log(`🎯 Scrolling to position: ${targetPosition}`);
 
         window.scrollTo({
           top: targetPosition,
           behavior: "smooth",
         });
+
+        // Update active navbar after scroll completes
+        setTimeout(() => {
+          console.log("✅ Scroll completed, updating navbar");
+        }, 1000);
+      } else {
+        console.error(`❌ Target element not found: ${targetId}`);
       }
     });
   });
@@ -421,93 +524,170 @@ function initializeScrollAnimations() {
 
 // ===== ACTIVE NAVIGATION HIGHLIGHTING =====
 function initializeActiveNavigation() {
+  let currentActiveSection = "";
+
   function updateActiveNavLink() {
     const navLinks = document.querySelectorAll('nav a[href^="#"]');
-    const headerOffset = 100; // Fixed offset for better detection
 
-    let activeSection = "";
-    const scrollPosition = window.scrollY + headerOffset;
-
-    // Special handling for homepage - no active nav when at top
-    if (window.scrollY < 150) {
-      activeSection = ""; // No active section for homepage
+    // Special handling for homepage - no active nav when at very top
+    if (window.scrollY < 50) {
+      currentActiveSection = "";
     } else {
-      // Get all sections in order of priority (most specific first)
-      const sectionsToCheck = [
+      const scrollPosition = window.scrollY + 120; // Offset for header
+      let foundActiveSection = "";
+
+      // Get all sections in order from bottom to top
+      const sections = [
         { id: "contact", element: document.getElementById("contact") },
         { id: "projects", element: document.getElementById("projects") },
-        { id: "interests", element: document.getElementById("interests") },
-        { id: "skills", element: document.getElementById("skills") },
-        { id: "experiences", element: document.getElementById("experiences") },
-        { id: "educations", element: document.getElementById("educations") },
         { id: "aboutme", element: document.getElementById("aboutme") },
       ];
 
-      // Check each section from bottom to top
-      for (let i = 0; i < sectionsToCheck.length; i++) {
-        const section = sectionsToCheck[i];
-        if (section.element) {
-          const sectionTop = section.element.offsetTop;
+      // Check main sections first
+      for (const section of sections) {
+        if (!section.element) continue;
+        const sectionTop = section.element.offsetTop;
 
-          // For subsections within aboutme, use more precise detection
-          if (
-            ["educations", "experiences", "skills", "interests"].includes(
-              section.id
-            )
-          ) {
-            const rect = section.element.getBoundingClientRect();
-            const elementTop = window.scrollY + rect.top;
-            const elementHeight = rect.height;
-            const viewportMiddle = window.scrollY + window.innerHeight / 2;
-
-            // Check if the section is visible in the viewport
-            if (
-              viewportMiddle >= elementTop &&
-              viewportMiddle < elementTop + elementHeight
-            ) {
-              activeSection = section.id;
-              break;
-            }
-          } else {
-            // For main sections (aboutme, projects, contact)
-            if (scrollPosition >= sectionTop - 100) {
-              activeSection = section.id;
-              break;
-            }
-          }
+        if (scrollPosition >= sectionTop - 50) {
+          foundActiveSection = section.id;
+          console.log(
+            `Section detected: ${section.id} (scroll: ${scrollPosition}, sectionTop: ${sectionTop})`
+          );
+          break;
         }
       }
+
+      // Special logic for About Me section - check if we should show sub-articles
+      if (foundActiveSection === "aboutme") {
+        const aboutmeSection = document.getElementById("aboutme");
+        const aboutGrid = aboutmeSection
+          ? aboutmeSection.querySelector(".about-grid")
+          : null;
+
+        if (aboutGrid) {
+          const aboutGridTop = aboutGrid.offsetTop + aboutmeSection.offsetTop;
+          const aboutmeSectionHeight = aboutmeSection.offsetHeight;
+          const aboutmeQuarter =
+            aboutmeSection.offsetTop + aboutmeSectionHeight * 0.25;
+
+          // Show sub-articles if user has scrolled past 1/4 of about me section
+          if (scrollPosition >= aboutmeQuarter) {
+            // Get all articles with their elements
+            const educationsEl = document.getElementById("educations");
+            const experiencesEl = document.getElementById("experiences");
+            const skillsEl = document.getElementById("skills");
+            const interestsEl = document.getElementById("interests");
+
+            if (educationsEl && experiencesEl && skillsEl && interestsEl) {
+              // Calculate positions relative to the About Me section
+              const educationsTop =
+                educationsEl.offsetTop + aboutmeSection.offsetTop;
+              const educationsHeight = educationsEl.offsetHeight;
+              const educationsMiddle = educationsTop + educationsHeight / 2;
+
+              const experiencesTop =
+                experiencesEl.offsetTop + aboutmeSection.offsetTop;
+              const experiencesHeight = experiencesEl.offsetHeight;
+              const experiencesMiddle = experiencesTop + experiencesHeight / 2;
+
+              const skillsTop = skillsEl.offsetTop + aboutmeSection.offsetTop;
+              const skillsHeight = skillsEl.offsetHeight;
+              const skillsMiddle = skillsTop + skillsHeight / 2;
+
+              const interestsTop =
+                interestsEl.offsetTop + aboutmeSection.offsetTop;
+
+              console.log(`🔍 Enhanced Scroll Analysis:`, {
+                scroll: scrollPosition,
+                aboutmeQuarter,
+                aboutGridTop,
+                educationsTop,
+                educationsMiddle,
+                experiencesTop,
+                experiencesMiddle,
+                skillsTop,
+                skillsMiddle,
+                interestsTop,
+              });
+
+              // Interest detection - has highest priority if in view
+              if (scrollPosition >= interestsTop - 30) {
+                foundActiveSection = "interests";
+                console.log("✅ INTERESTS active");
+              }
+              // Skills detection
+              else if (scrollPosition >= skillsTop - 30) {
+                foundActiveSection = "skills";
+                console.log("✅ SKILLS active");
+              }
+              // Experience detection - split into 2 parts
+              // Part 1: First half of Experience area still shows Education navbar
+              // Part 2: Second half of Experience area shows Experience navbar
+              else if (scrollPosition >= experiencesMiddle) {
+                foundActiveSection = "experiences";
+                console.log(
+                  "✅ EXPERIENCES active (second half of experience article)"
+                );
+              }
+              // Education detection - remains active longer (covers its area + first half of experience)
+              else if (scrollPosition >= aboutmeQuarter) {
+                foundActiveSection = "educations";
+                console.log(
+                  "✅ EDUCATIONS active (covers education + first half of experience)"
+                );
+              }
+            }
+          }
+          // If user is in About Me section but before the grid, keep "aboutme" active
+        }
+      }
+
+      // Fallback to aboutme for initial scroll
+      if (!foundActiveSection && window.scrollY >= 50) {
+        foundActiveSection = "aboutme";
+        console.log("Fallback to aboutme");
+      }
+
+      currentActiveSection = foundActiveSection;
     }
 
     // Update nav links
     navLinks.forEach((link) => {
       link.classList.remove("active");
       const href = link.getAttribute("href");
-      if (activeSection && href === `#${activeSection}`) {
+      if (currentActiveSection && href === `#${currentActiveSection}`) {
         link.classList.add("active");
+        console.log("Setting active link for:", currentActiveSection);
       }
     });
 
-    // Debug info
+    // Debug info with more details
     console.log(
-      `Active section: ${activeSection || "none"}, Scroll: ${Math.round(
+      `Active section: ${currentActiveSection || "none"}, Scroll: ${Math.round(
         window.scrollY
-      )}`
+      )}, Device: ${
+        window.innerWidth > 768 ? "Desktop" : "Mobile"
+      }, Nav links found: ${navLinks.length}`
     );
   }
 
   // Initial call
   updateActiveNavLink();
 
-  // Throttled scroll event listener for better performance
+  // Optimized scroll event listener
   let scrollTimeout;
+  let isScrolling = false;
+
   window.addEventListener(
     "scroll",
     function () {
-      if (scrollTimeout) {
-        clearTimeout(scrollTimeout);
+      if (!isScrolling) {
+        requestAnimationFrame(function () {
+          updateActiveNavLink();
+          isScrolling = false;
+        });
+        isScrolling = true;
       }
-      scrollTimeout = setTimeout(updateActiveNavLink, 100);
     },
     { passive: true }
   );
