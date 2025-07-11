@@ -391,10 +391,23 @@ function initializeSmoothScrolling() {
 
         case "experiences":
           targetElement = document.getElementById("experiences");
-          // Calculate position to show experience in middle of viewport
+          // Scroll to TokoCrypto timeline item for better experience visibility
           if (targetElement) {
             const aboutmeSection = document.getElementById("aboutme");
-            if (aboutmeSection) {
+            const timelineItems =
+              targetElement.querySelectorAll(".timeline-item");
+            const tokoCryptoItem = timelineItems[2]; // Index 2 = TokoCrypto (item ke-3)
+
+            if (aboutmeSection && tokoCryptoItem) {
+              const experienceOffset = targetElement.offsetTop;
+              const tokoCryptoOffset = tokoCryptoItem.offsetTop;
+              scrollOffset = experienceOffset + tokoCryptoOffset - 100; // Scroll ke TokoCrypto dengan padding
+              targetElement = aboutmeSection;
+              console.log(
+                `💼 Experience scroll target: TokoCrypto at offset ${scrollOffset}`
+              );
+            } else {
+              // Fallback ke logic lama jika TokoCrypto tidak ditemukan
               const experienceOffset = targetElement.offsetTop;
               const experienceHeight = targetElement.offsetHeight;
               scrollOffset =
@@ -402,6 +415,7 @@ function initializeSmoothScrolling() {
                 window.innerHeight / 2 +
                 experienceHeight / 2;
               targetElement = aboutmeSection;
+              console.log(`💼 Experience scroll fallback: middle of article`);
             }
           }
           console.log("📍 Scrolling to Experience article");
@@ -710,14 +724,46 @@ function initializeActiveNavigation() {
                 foundActiveSection = "skills";
                 console.log("✅ SKILLS active");
               }
-              // Experience detection - split into 2 parts
-              // Part 1: First half of Experience area still shows Education navbar
-              // Part 2: Second half of Experience area shows Experience navbar
-              else if (scrollPosition >= experiencesMiddle) {
-                foundActiveSection = "experiences";
-                console.log(
-                  "✅ EXPERIENCES active (second half of experience article)"
-                );
+              // Experience detection - aktif ketika user menyentuh timeline TokoCrypto
+              // TokoCrypto adalah timeline item ke-3 dalam experience section
+              else if (scrollPosition >= experiencesTop + 100) {
+                // Cari timeline item TokoCrypto (item ke-3)
+                const experiencesEl = document.getElementById("experiences");
+                const timelineItems = experiencesEl
+                  ? experiencesEl.querySelectorAll(".timeline-item")
+                  : [];
+                const tokoCryptoItem = timelineItems[2]; // Index 2 = item ke-3 (TokoCrypto)
+
+                if (tokoCryptoItem) {
+                  const tokoCryptoTop =
+                    tokoCryptoItem.offsetTop + experiencesTop;
+                  const tokoCryptoTrigger = tokoCryptoTop - 50; // Trigger 50px sebelum TokoCrypto
+
+                  console.log(`💼 TokoCrypto Analysis:`, {
+                    tokoCryptoTop,
+                    tokoCryptoTrigger,
+                    currentScroll: scrollPosition,
+                  });
+
+                  if (scrollPosition >= tokoCryptoTrigger) {
+                    foundActiveSection = "experiences";
+                    console.log(
+                      "✅ EXPERIENCES active (user reached TokoCrypto timeline)"
+                    );
+                  } else {
+                    // Jika belum sampai TokoCrypto, tetap Education
+                    foundActiveSection = "educations";
+                    console.log(
+                      "🎓 EDUCATIONS still active (before TokoCrypto)"
+                    );
+                  }
+                } else {
+                  // Fallback ke logic lama jika TokoCrypto tidak ditemukan
+                  foundActiveSection = "experiences";
+                  console.log(
+                    "✅ EXPERIENCES active (fallback - TokoCrypto not found)"
+                  );
+                }
               }
               // Education detection - aktif ketika user menyentuh about-grid area
               else if (scrollPosition >= aboutGridTrigger) {
@@ -1059,10 +1105,51 @@ function testEducationNavbar() {
   }
 }
 
+// Test Experience navbar specifically
+function testExperienceNavbar() {
+  console.log("💼 Testing Experience navbar activation...");
+
+  // First, let's check the TokoCrypto timeline position
+  const experiencesEl = document.getElementById("experiences");
+  const aboutmeSection = document.getElementById("aboutme");
+
+  if (experiencesEl && aboutmeSection) {
+    const timelineItems = experiencesEl.querySelectorAll(".timeline-item");
+    const tokoCryptoItem = timelineItems[2]; // Index 2 = TokoCrypto (item ke-3)
+
+    if (tokoCryptoItem) {
+      const experiencesTop = experiencesEl.offsetTop + aboutmeSection.offsetTop;
+      const tokoCryptoTop = tokoCryptoItem.offsetTop + experiencesTop;
+      const tokoCryptoTrigger = tokoCryptoTop - 50;
+
+      console.log(`📊 TokoCrypto Analysis:`, {
+        experiencesTop,
+        tokoCryptoTop,
+        tokoCryptoTrigger,
+        currentScroll: window.scrollY,
+      });
+
+      // Simulate scroll to TokoCrypto area
+      window.scrollTo({
+        top: tokoCryptoTrigger + 10,
+        behavior: "smooth",
+      });
+
+      setTimeout(() => {
+        console.log(`📍 Scrolled to: ${window.scrollY}`);
+        console.log(`🎯 Should be Experience active now (TokoCrypto visible)`);
+      }, 1000);
+    } else {
+      console.error("❌ TokoCrypto timeline item not found");
+    }
+  }
+}
+
 // Add to window for manual testing
 window.testNavbarActivation = testNavbarActivation;
 window.testNavbarClicks = testNavbarClicks;
 window.testEducationNavbar = testEducationNavbar;
+window.testExperienceNavbar = testExperienceNavbar;
 
 // ===== UTILITY FUNCTIONS =====
 
