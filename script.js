@@ -391,23 +391,23 @@ function initializeSmoothScrolling() {
 
         case "experiences":
           targetElement = document.getElementById("experiences");
-          // Scroll to TokoCrypto timeline item for better experience visibility
+          // Scroll to Prasunet Company timeline item for better experience visibility
           if (targetElement) {
             const aboutmeSection = document.getElementById("aboutme");
             const timelineItems =
               targetElement.querySelectorAll(".timeline-item");
-            const tokoCryptoItem = timelineItems[2]; // Index 2 = TokoCrypto (item ke-3)
+            const prasunetItem = timelineItems[3]; // Index 3 = Prasunet Company (item ke-4)
 
-            if (aboutmeSection && tokoCryptoItem) {
+            if (aboutmeSection && prasunetItem) {
               const experienceOffset = targetElement.offsetTop;
-              const tokoCryptoOffset = tokoCryptoItem.offsetTop;
-              scrollOffset = experienceOffset + tokoCryptoOffset - 100; // Scroll ke TokoCrypto dengan padding
+              const prasunetOffset = prasunetItem.offsetTop;
+              scrollOffset = experienceOffset + prasunetOffset - 100; // Scroll ke Prasunet dengan padding
               targetElement = aboutmeSection;
               console.log(
-                `💼 Experience scroll target: TokoCrypto at offset ${scrollOffset}`
+                `💼 Experience scroll target: Prasunet Company at offset ${scrollOffset}`
               );
             } else {
-              // Fallback ke logic lama jika TokoCrypto tidak ditemukan
+              // Fallback ke logic lama jika Prasunet tidak ditemukan
               const experienceOffset = targetElement.offsetTop;
               const experienceHeight = targetElement.offsetHeight;
               scrollOffset =
@@ -757,44 +757,43 @@ function initializeActiveNavigation() {
                   );
                 }
               }
-              // Experience detection - aktif ketika user menyentuh timeline TokoCrypto
-              // TokoCrypto adalah timeline item ke-3 dalam experience section
+              // Experience detection - aktif ketika user menyentuh timeline Prasunet Company
+              // Prasunet Company adalah timeline item ke-4 dalam experience section
               else if (scrollPosition >= experiencesTop + 100) {
-                // Cari timeline item TokoCrypto (item ke-3)
+                // Cari timeline item Prasunet Company (item ke-4)
                 const experiencesEl = document.getElementById("experiences");
                 const timelineItems = experiencesEl
                   ? experiencesEl.querySelectorAll(".timeline-item")
                   : [];
-                const tokoCryptoItem = timelineItems[2]; // Index 2 = item ke-3 (TokoCrypto)
+                const prasunetItem = timelineItems[3]; // Index 3 = item ke-4 (Prasunet Company)
 
-                if (tokoCryptoItem) {
-                  const tokoCryptoTop =
-                    tokoCryptoItem.offsetTop + experiencesTop;
-                  const tokoCryptoTrigger = tokoCryptoTop - 50; // Trigger 50px sebelum TokoCrypto
+                if (prasunetItem) {
+                  const prasunetTop = prasunetItem.offsetTop + experiencesTop;
+                  const prasunetTrigger = prasunetTop - 50; // Trigger 50px sebelum Prasunet
 
-                  console.log(`💼 TokoCrypto Analysis:`, {
-                    tokoCryptoTop,
-                    tokoCryptoTrigger,
+                  console.log(`💼 Prasunet Company Analysis:`, {
+                    prasunetTop,
+                    prasunetTrigger,
                     currentScroll: scrollPosition,
                   });
 
-                  if (scrollPosition >= tokoCryptoTrigger) {
+                  if (scrollPosition >= prasunetTrigger) {
                     foundActiveSection = "experiences";
                     console.log(
-                      "✅ EXPERIENCES active (user reached TokoCrypto timeline)"
+                      "✅ EXPERIENCES active (user reached Prasunet Company timeline)"
                     );
                   } else {
-                    // Jika belum sampai TokoCrypto, tetap Education
+                    // Jika belum sampai Prasunet, tetap Education
                     foundActiveSection = "educations";
                     console.log(
-                      "🎓 EDUCATIONS still active (before TokoCrypto)"
+                      "🎓 EDUCATIONS still active (before Prasunet Company)"
                     );
                   }
                 } else {
-                  // Fallback ke logic lama jika TokoCrypto tidak ditemukan
+                  // Fallback ke logic lama jika Prasunet tidak ditemukan
                   foundActiveSection = "experiences";
                   console.log(
-                    "✅ EXPERIENCES active (fallback - TokoCrypto not found)"
+                    "✅ EXPERIENCES active (fallback - Prasunet Company not found)"
                   );
                 }
               }
@@ -1138,77 +1137,48 @@ function testEducationNavbar() {
   }
 }
 
-// Test Experience navbar specifically
+// ===== TEST FUNCTION FOR EXPERIENCE (PRASUNET COMPANY) NAVBAR =====
 function testExperienceNavbar() {
-  console.log("💼 Testing Experience navbar activation...");
+  console.log("🧪 Testing Experience (Prasunet Company) navbar detection...");
 
-  // First, let's check the TokoCrypto timeline position
   const experiencesEl = document.getElementById("experiences");
   const aboutmeSection = document.getElementById("aboutme");
 
-  if (experiencesEl && aboutmeSection) {
-    const timelineItems = experiencesEl.querySelectorAll(".timeline-item");
-    const tokoCryptoItem = timelineItems[2]; // Index 2 = TokoCrypto (item ke-3)
-
-    if (tokoCryptoItem) {
-      const experiencesTop = experiencesEl.offsetTop + aboutmeSection.offsetTop;
-      const tokoCryptoTop = tokoCryptoItem.offsetTop + experiencesTop;
-      const tokoCryptoTrigger = tokoCryptoTop - 50;
-
-      console.log(`📊 TokoCrypto Analysis:`, {
-        experiencesTop,
-        tokoCryptoTop,
-        tokoCryptoTrigger,
-        currentScroll: window.scrollY,
-      });
-
-      // Simulate scroll to TokoCrypto area
-      window.scrollTo({
-        top: tokoCryptoTrigger + 10,
-        behavior: "smooth",
-      });
-
-      setTimeout(() => {
-        console.log(`📍 Scrolled to: ${window.scrollY}`);
-        console.log(`🎯 Should be Experience active now (TokoCrypto visible)`);
-      }, 1000);
-    } else {
-      console.error("❌ TokoCrypto timeline item not found");
-    }
+  if (!experiencesEl || !aboutmeSection) {
+    console.error("❌ Experience or About Me section not found!");
+    return;
   }
-}
 
-// Test Skills navbar specifically
-function testSkillsNavbar() {
-  console.log("⚡ Testing Skills navbar activation...");
+  const timelineItems = experiencesEl.querySelectorAll(".timeline-item");
+  const prasunetItem = timelineItems[3]; // Index 3 = Prasunet Company (item ke-4)
 
-  // First, let's check the skills article position
-  const skillsEl = document.getElementById("skills");
-  const aboutmeSection = document.getElementById("aboutme");
-
-  if (skillsEl && aboutmeSection) {
-    const skillsArticleTop = skillsEl.offsetTop + aboutmeSection.offsetTop;
-    const skillsTrigger = skillsArticleTop - 80;
-
-    console.log(`📊 Skills Analysis:`, {
-      skillsArticleTop,
-      skillsTrigger,
-      currentScroll: window.scrollY,
-    });
-
-    // Simulate scroll to skills article area
-    window.scrollTo({
-      top: skillsTrigger + 10,
-      behavior: "smooth",
-    });
-
-    setTimeout(() => {
-      console.log(`📍 Scrolled to: ${window.scrollY}`);
-      console.log(`🎯 Should be Skills active now (skills article visible)`);
-    }, 1000);
-  } else {
-    console.error("❌ Skills article not found");
+  if (!prasunetItem) {
+    console.error("❌ Prasunet Company timeline item not found!");
+    return;
   }
+
+  const experiencesTop = experiencesEl.offsetTop + aboutmeSection.offsetTop;
+  const prasunetTop = prasunetItem.offsetTop + experiencesTop;
+  const prasunetTrigger = prasunetTop - 50;
+
+  console.log("📊 Experience (Prasunet Company) Test Results:", {
+    experiencesTop,
+    prasunetTop,
+    prasunetTrigger,
+    prasunetCompany: prasunetItem.querySelector("h4")?.textContent,
+    currentScroll: window.pageYOffset,
+    shouldBeActive: window.pageYOffset >= prasunetTrigger,
+  });
+
+  // Scroll to test position
+  window.scrollTo({
+    top: prasunetTrigger + 10,
+    behavior: "smooth",
+  });
+
+  setTimeout(() => {
+    console.log("✅ Scrolled to Prasunet Company test position");
+  }, 1000);
 }
 
 // Add to window for manual testing
@@ -1216,7 +1186,6 @@ window.testNavbarActivation = testNavbarActivation;
 window.testNavbarClicks = testNavbarClicks;
 window.testEducationNavbar = testEducationNavbar;
 window.testExperienceNavbar = testExperienceNavbar;
-window.testSkillsNavbar = testSkillsNavbar;
 
 // ===== UTILITY FUNCTIONS =====
 
