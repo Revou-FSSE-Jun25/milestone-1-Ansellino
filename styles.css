@@ -389,6 +389,42 @@ nav a:focus::after {
   overflow: hidden;
 }
 
+/* Additions for mobile readability */
+@media (max-width: 768px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  /* Ensure proper order and single column layout on mobile */
+  .about-card {
+    grid-column: 1;
+    order: initial;
+  }
+
+  /* Specific ordering for mobile readability */
+  #educations {
+    order: 1;
+  }
+
+  #experiences {
+    order: 2;
+  }
+
+  #skills {
+    order: 3;
+  }
+
+  #interests {
+    order: 4;
+  }
+
+  /* Override skills-card spanning on mobile */
+  .skills-card {
+    grid-column: 1 !important;
+  }
+}
+
 .about-card::before {
   content: "";
   position: absolute;
@@ -964,7 +1000,7 @@ nav a:focus::after {
 @media (max-width: 768px) {
   .menu-toggle {
     display: flex !important;
-    right: 1.5rem;
+    right: 1rem;
     top: 50%;
     transform: translateY(-50%);
     width: 50px;
@@ -1286,7 +1322,7 @@ nav a:focus::after {
 @media (max-width: 480px) {
   .menu-toggle {
     display: flex !important;
-    right: 1.2rem;
+    right: 0.8rem;
     border-radius: 14px;
     top: 50%;
     transform: translateY(-50%);
@@ -1395,7 +1431,7 @@ nav a:focus::after {
 @media (max-width: 360px) {
   .menu-toggle {
     display: flex !important;
-    right: 1rem;
+    right: 0.6rem;
     border-radius: 12px;
     top: 50%;
     transform: translateY(-50%);
