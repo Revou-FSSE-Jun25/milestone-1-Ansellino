@@ -5,6 +5,13 @@ document.addEventListener("DOMContentLoaded", function () {
     "Portfolio Jeremy Ansellino - JavaScript loaded successfully! 🚀"
   );
 
+  // ===== DEBUG: Check navbar elements =====
+  console.log("🔍 Debugging navbar elements:");
+  const navLinks = document.querySelectorAll('nav a[href^="#"]');
+  navLinks.forEach((link, index) => {
+    console.log(`${index + 1}. ${link.href} - ${link.textContent}`);
+  });
+
   // ===== LOGO REFRESH FUNCTIONALITY =====
   initializeLogoRefresh();
 
@@ -375,6 +382,9 @@ function initializeSmoothScrolling() {
           if (aboutGrid) {
             targetElement = aboutmeSection;
             scrollOffset = aboutGrid.offsetTop - 50; // Scroll to grid area
+            console.log(
+              `🎓 Education scroll target: about-grid at offset ${scrollOffset}`
+            );
           }
           console.log("📍 Scrolling to Education article");
           break;
@@ -455,14 +465,86 @@ function initializeSmoothScrolling() {
 
         console.log(`🎯 Scrolling to position: ${targetPosition}`);
 
+        // Immediately activate the clicked navbar item
+        console.log(`🚀 Immediately activating navbar for: ${targetId}`);
+
+        // Remove active class from all navbar items
+        document.querySelectorAll("nav ul li").forEach((navItem) => {
+          navItem.classList.remove("active");
+        });
+
+        // Find and activate the correct navbar item
+        let navItemToActivate = null;
+
+        // For article targets within About Me section, activate About Me navbar
+        if (targetId === "educations" || targetId === "education") {
+          navItemToActivate = document.querySelector(
+            "nav ul li a[href='#educations']"
+          )?.parentElement;
+          currentActiveSection = "educations";
+          console.log("🎓 Education navbar will be activated");
+        } else if (targetId === "experiences" || targetId === "experience") {
+          navItemToActivate = document.querySelector(
+            "nav ul li a[href='#experiences']"
+          )?.parentElement;
+          currentActiveSection = "experiences";
+          console.log("💼 Experience navbar will be activated");
+        } else if (targetId === "skills") {
+          navItemToActivate = document.querySelector(
+            "nav ul li a[href='#skills']"
+          )?.parentElement;
+          currentActiveSection = "skills";
+          console.log("⚡ Skills navbar will be activated");
+        } else if (targetId === "interests") {
+          navItemToActivate = document.querySelector(
+            "nav ul li a[href='#interests']"
+          )?.parentElement;
+          currentActiveSection = "interests";
+          console.log("❤️ Interests navbar will be activated");
+        } else if (targetId === "aboutme") {
+          navItemToActivate = document.querySelector(
+            "nav ul li a[href='#aboutme']"
+          )?.parentElement;
+          currentActiveSection = "aboutme";
+        } else if (targetId === "projects") {
+          navItemToActivate = document.querySelector(
+            "nav ul li a[href='#projects']"
+          )?.parentElement;
+          currentActiveSection = "projects";
+        } else if (targetId === "contact") {
+          navItemToActivate = document.querySelector(
+            "nav ul li a[href='#contact']"
+          )?.parentElement;
+          currentActiveSection = "contact";
+        } else {
+          // For any other sections, try to find by href
+          navItemToActivate = document.querySelector(
+            `nav ul li a[href='#${targetId}']`
+          )?.parentElement;
+          currentActiveSection = targetId;
+        }
+
+        if (navItemToActivate) {
+          navItemToActivate.classList.add("active");
+          console.log(`✨ Navbar activated for: ${currentActiveSection}`);
+          console.log(`🔍 Activated element:`, navItemToActivate);
+        } else {
+          console.log(`⚠️ Could not find navbar item for: ${targetId}`);
+          console.log(
+            `🔍 Available navbar links:`,
+            document.querySelectorAll("nav ul li a")
+          );
+        }
+
+        // Start smooth scroll
         window.scrollTo({
           top: targetPosition,
           behavior: "smooth",
         });
 
-        // Update active navbar after scroll completes
+        // Update active navbar after scroll completes (backup check)
         setTimeout(() => {
-          console.log("✅ Scroll completed, updating navbar");
+          console.log("✅ Scroll completed, backup navbar check");
         }, 1000);
       } else {
         console.error(`❌ Target element not found: ${targetId}`);
@@ -527,7 +609,8 @@ function initializeActiveNavigation() {
   let currentActiveSection = "";
 
   function updateActiveNavLink() {
-    const navLinks = document.querySelectorAll('nav a[href^="#"]');
+    const navLinks = document.querySelectorAll('nav ul li a[href^="#"]');
+    const navItems = document.querySelectorAll("nav ul li");
 
     // Special handling for homepage - no active nav when at very top
     if (window.scrollY < 50) {
@@ -567,11 +650,18 @@ function initializeActiveNavigation() {
         if (aboutGrid) {
           const aboutGridTop = aboutGrid.offsetTop + aboutmeSection.offsetTop;
           const aboutmeSectionHeight = aboutmeSection.offsetHeight;
-          const aboutmeQuarter =
-            aboutmeSection.offsetTop + aboutmeSectionHeight * 0.25;
 
-          // Show sub-articles if user has scrolled past 1/4 of about me section
-          if (scrollPosition >= aboutmeQuarter) {
+          // Education navbar aktif ketika user menyentuh about-grid
+          const aboutGridTrigger = aboutGridTop - 100; // Trigger 100px sebelum about-grid
+
+          console.log(`🔍 About Grid Analysis:`, {
+            aboutGridTop,
+            aboutGridTrigger,
+            currentScroll: scrollPosition,
+          });
+
+          // Show sub-articles if user has scrolled to about-grid area
+          if (scrollPosition >= aboutGridTrigger) {
             // Get all articles with their elements
             const educationsEl = document.getElementById("educations");
             const experiencesEl = document.getElementById("experiences");
@@ -599,7 +689,7 @@ function initializeActiveNavigation() {
 
               console.log(`🔍 Enhanced Scroll Analysis:`, {
                 scroll: scrollPosition,
-                aboutmeQuarter,
+                aboutGridTrigger,
                 aboutGridTop,
                 educationsTop,
                 educationsMiddle,
@@ -629,11 +719,11 @@ function initializeActiveNavigation() {
                   "✅ EXPERIENCES active (second half of experience article)"
                 );
               }
-              // Education detection - remains active longer (covers its area + first half of experience)
-              else if (scrollPosition >= aboutmeQuarter) {
+              // Education detection - aktif ketika user menyentuh about-grid area
+              else if (scrollPosition >= aboutGridTrigger) {
                 foundActiveSection = "educations";
                 console.log(
-                  "✅ EDUCATIONS active (covers education + first half of experience)"
+                  "✅ EDUCATIONS active (user reached about-grid area)"
                 );
               }
             }
@@ -652,11 +742,14 @@ function initializeActiveNavigation() {
     }
 
     // Update nav links
+    navItems.forEach((navItem) => {
+      navItem.classList.remove("active");
+    });
+
     navLinks.forEach((link) => {
-      link.classList.remove("active");
       const href = link.getAttribute("href");
       if (currentActiveSection && href === `#${currentActiveSection}`) {
-        link.classList.add("active");
+        link.parentElement.classList.add("active");
         console.log("Setting active link for:", currentActiveSection);
       }
     });
@@ -871,6 +964,105 @@ function initializeBackToTop() {
 
   console.log("Back to top functionality initialized successfully!");
 }
+
+// ===== TEST FUNCTION FOR DEBUGGING =====
+function testNavbarActivation() {
+  console.log("🧪 Testing navbar activation...");
+
+  // Test each article activation
+  const testTargets = ["educations", "experiences", "skills", "interests"];
+
+  testTargets.forEach((target, index) => {
+    setTimeout(() => {
+      console.log(`Testing ${target}...`);
+
+      // Remove all active classes first
+      document.querySelectorAll("nav ul li").forEach((navItem) => {
+        navItem.classList.remove("active");
+      });
+
+      // Find and activate target
+      const targetNavItem = document.querySelector(
+        `nav ul li a[href='#${target}']`
+      )?.parentElement;
+      if (targetNavItem) {
+        targetNavItem.classList.add("active");
+        console.log(`✅ ${target} navbar activated successfully`);
+        console.log(`🔍 Active element classes:`, targetNavItem.className);
+        console.log(
+          `🔍 Active link element:`,
+          targetNavItem.querySelector("a")
+        );
+      } else {
+        console.error(`❌ Could not find navbar for ${target}`);
+        console.log(
+          `🔍 Available navbar links:`,
+          Array.from(document.querySelectorAll("nav ul li a")).map(
+            (a) => a.href
+          )
+        );
+      }
+    }, index * 3000); // 3 second delay between each test
+  });
+}
+
+// Test navbar click simulation
+function testNavbarClicks() {
+  console.log("🖱️ Testing navbar clicks...");
+
+  const testTargets = ["educations", "experiences", "skills", "interests"];
+
+  testTargets.forEach((target, index) => {
+    setTimeout(() => {
+      console.log(`Clicking ${target}...`);
+      const targetLink = document.querySelector(
+        `nav ul li a[href='#${target}']`
+      );
+      if (targetLink) {
+        targetLink.click();
+        console.log(`✅ ${target} navbar clicked successfully`);
+      } else {
+        console.error(`❌ Could not find navbar link for ${target}`);
+      }
+    }, index * 4000); // 4 second delay between each test
+  });
+}
+
+// Test Education navbar specifically
+function testEducationNavbar() {
+  console.log("🎓 Testing Education navbar activation...");
+
+  // First, let's check the about-grid position
+  const aboutmeSection = document.getElementById("aboutme");
+  const aboutGrid = aboutmeSection?.querySelector(".about-grid");
+
+  if (aboutGrid && aboutmeSection) {
+    const aboutGridTop = aboutGrid.offsetTop + aboutmeSection.offsetTop;
+    const aboutGridTrigger = aboutGridTop - 100;
+
+    console.log(`📊 About Grid Analysis:`, {
+      aboutGridTop,
+      aboutGridTrigger,
+      currentScroll: window.scrollY,
+    });
+
+    // Simulate scroll to about-grid area
+    window.scrollTo({
+      top: aboutGridTrigger + 10,
+      behavior: "smooth",
+    });
+
+    setTimeout(() => {
+      console.log(`📍 Scrolled to: ${window.scrollY}`);
+      console.log(`🎯 Should be Education active now`);
+    }, 1000);
+  }
+}
+
+// Add to window for manual testing
+window.testNavbarActivation = testNavbarActivation;
+window.testNavbarClicks = testNavbarClicks;
+window.testEducationNavbar = testEducationNavbar;
 
 // ===== UTILITY FUNCTIONS =====
 
