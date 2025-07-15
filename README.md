@@ -1,5 +1,36 @@
 # Milestone Membuat Website menggunakan HTML Part 1 - Main Explaination
 
+## Table of Contents
+
+1. [Goals](#goals)
+2. [Scenario](#scenario)
+3. [Purpose](#purpose)
+4. [Requirement](#requirement)
+5. [Deliverables](#deliverables)
+6. [Grading Component](#grading-component)
+7. [Documentation Project](#documentation-project)
+   - [Overview of the Website](#overview-of-the-website)
+   - [Features Implemented](#features-implemented)
+     - [🏠 Home/Hero Section](#-homehero-section)
+     - [👤 About Me Section](#-about-me-section)
+     - [🚀 Projects Section](#-projects-section)
+     - [📞 Contact Section](#-contact-section)
+     - [🎨 Design & UX Features](#-design--ux-features)
+     - [📱 Mobile Optimization](#-mobile-optimization)
+     - [⚡ Interactive Features](#-interactive-features)
+     - [🔧 Technical Features](#-technical-features)
+   - [Technologies Used](#technologies-used)
+   - [Key Features & Innovations](#key-features--innovations)
+   - [File Structure](#file-structure)
+   - [Responsive Breakpoints](#responsive-breakpoints)
+   - [Accessibility Features](#accessibility-features)
+   - [Performance Optimizations](#performance-optimizations)
+   - [Browser Compatibility](#browser-compatibility)
+   - [Future Enhancements](#future-enhancements)
+   - [Installation & Setup](#installation--setup)
+   - [Link Deploy](#link-deploy)
+   - [Credits](#credits)
+
 ## Goals
 
 The goal of this project is to evaluate your ability to:

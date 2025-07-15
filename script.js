@@ -1,16 +1,16 @@
 // ===== PORTFOLIO JEREMY ANSELLINO - JAVASCRIPT =====
 
 document.addEventListener("DOMContentLoaded", function () {
-  console.log(
-    "Portfolio Jeremy Ansellino - JavaScript loaded successfully! 🚀"
-  );
+  // console.log(
+  //   "Portfolio Jeremy Ansellino - JavaScript loaded successfully! 🚀"
+  // );
 
   // ===== DEBUG: Check navbar elements =====
-  console.log("🔍 Debugging navbar elements:");
+  // console.log("🔍 Debugging navbar elements:");
   const navLinks = document.querySelectorAll('nav a[href^="#"]');
-  navLinks.forEach((link, index) => {
-    console.log(`${index + 1}. ${link.href} - ${link.textContent}`);
-  });
+  // navLinks.forEach((link, index) => {
+  //   console.log(`${index + 1}. ${link.href} - ${link.textContent}`);
+  // });
 
   // ===== LOGO REFRESH FUNCTIONALITY =====
   initializeLogoRefresh();
@@ -40,19 +40,19 @@ function initializeLogoRefresh() {
   const headerLogo = document.querySelector(".header-logo");
   const brandText = document.querySelector(".brand-text");
 
-  console.log("Initializing logo refresh functionality...");
-  console.log("Logo container found:", !!logoContainer);
-  console.log("Header logo found:", !!headerLogo);
-  console.log("Brand text found:", !!brandText);
+  // console.log("Initializing logo refresh functionality...");
+  // console.log("Logo container found:", !!logoContainer);
+  // console.log("Header logo found:", !!headerLogo);
+  // console.log("Brand text found:", !!brandText);
 
   if (!logoContainer) {
-    console.error("Logo container not found!");
+    // console.error("Logo container not found!");
     return;
   }
 
   // Function to handle page refresh with loading animation
   function refreshPage() {
-    console.log("Logo clicked - refreshing page...");
+    // console.log("Logo clicked - refreshing page...");
 
     // Add loading state to logo
     if (headerLogo) {
@@ -100,7 +100,7 @@ function initializeLogoRefresh() {
   // Add cursor pointer style
   logoContainer.style.cursor = "pointer";
 
-  console.log("Logo refresh functionality initialized successfully!");
+  // console.log("Logo refresh functionality initialized successfully!");
 }
 
 // ===== ENHANCED MOBILE MENU INITIALIZATION =====
@@ -111,13 +111,13 @@ function initializeMobileMenu() {
   const body = document.body;
   let isMenuOpen = false;
 
-  console.log("Initializing enhanced mobile menu...");
-  console.log("Menu toggle found:", !!menuToggle);
-  console.log("Nav UL found:", !!navUl);
-  console.log("Nav links found:", navLinks.length);
+  // console.log("Initializing enhanced mobile menu...");
+  // console.log("Menu toggle found:", !!menuToggle);
+  // console.log("Nav UL found:", !!navUl);
+  // console.log("Nav links found:", navLinks.length);
 
   if (!menuToggle || !navUl) {
-    console.error("Mobile menu elements not found!");
+    // console.error("Mobile menu elements not found!");
     return;
   }
 
@@ -125,10 +125,10 @@ function initializeMobileMenu() {
   function checkMenuToggleVisibility() {
     if (window.innerWidth <= 768) {
       menuToggle.style.display = "flex";
-      console.log("Mobile view - showing menu toggle");
+      // console.log("Mobile view - showing menu toggle");
     } else {
       menuToggle.style.display = "none";
-      console.log("Desktop view - hiding menu toggle");
+      // console.log("Desktop view - hiding menu toggle");
       if (isMenuOpen) closeMenu();
     }
   }
@@ -153,10 +153,10 @@ function initializeMobileMenu() {
     if (icon) {
       if (isMenuOpen) {
         icon.className = "fas fa-times";
-        console.log("Mobile slide-in menu opened");
+        // console.log("Mobile slide-in menu opened");
       } else {
         icon.className = "fas fa-bars";
-        console.log("Mobile slide-in menu closed");
+        // console.log("Mobile slide-in menu closed");
       }
     }
 
@@ -186,7 +186,7 @@ function initializeMobileMenu() {
       // Reset body styles
       body.style.overflow = "";
 
-      console.log("Mobile slide-in menu closed");
+      // console.log("Mobile slide-in menu closed");
     }
   }
 
@@ -194,18 +194,18 @@ function initializeMobileMenu() {
   menuToggle.addEventListener("click", function (e) {
     e.preventDefault();
     e.stopPropagation();
-    console.log("Menu toggle clicked, current state:", isMenuOpen);
+    // console.log("Menu toggle clicked, current state:", isMenuOpen);
     toggleMenu();
   });
 
   // Debug: Add visual feedback when toggle is clicked
   menuToggle.addEventListener("touchstart", function (e) {
-    console.log("Touch start on menu toggle");
+    // console.log("Touch start on menu toggle");
     this.style.transform = "translateY(-50%) scale(0.95)";
   });
 
   menuToggle.addEventListener("touchend", function (e) {
-    console.log("Touch end on menu toggle");
+    // console.log("Touch end on menu toggle");
     setTimeout(() => {
       this.style.transform = "translateY(-50%)";
     }, 100);
@@ -214,7 +214,7 @@ function initializeMobileMenu() {
   // Close menu when clicking navigation links with smooth transition
   navLinks.forEach((link) => {
     link.addEventListener("click", function () {
-      console.log("Navigation link clicked:", this.textContent);
+      // console.log("Navigation link clicked:", this.textContent);
       if (isMenuOpen && window.innerWidth <= 768) {
         // Add visual feedback before closing
         link.style.transform = "scale(0.95)";
@@ -233,17 +233,17 @@ function initializeMobileMenu() {
       const isClickOnMenu = navUl.contains(e.target);
       const isClickOnToggle = menuToggle.contains(e.target);
 
-      console.log(
-        "Document click - Menu open:",
-        isMenuOpen,
-        "Click on menu:",
-        isClickOnMenu,
-        "Click on toggle:",
-        isClickOnToggle
-      );
+      // console.log(
+      //   "Document click - Menu open:",
+      //   isMenuOpen,
+      //   "Click on menu:",
+      //   isClickOnMenu,
+      //   "Click on toggle:",
+      //   isClickOnToggle
+      // );
 
       if (!isClickOnMenu && !isClickOnToggle) {
-        console.log("Closing menu due to outside click");
+        // console.log("Closing menu due to outside click");
         closeMenu();
       }
     }
@@ -255,17 +255,17 @@ function initializeMobileMenu() {
       const isClickOnMenu = navUl.contains(e.target);
       const isClickOnToggle = menuToggle.contains(e.target);
 
-      console.log(
-        "Touch start - Menu open:",
-        isMenuOpen,
-        "Touch on menu:",
-        isClickOnMenu,
-        "Touch on toggle:",
-        isClickOnToggle
-      );
+      // console.log(
+      //   "Touch start - Menu open:",
+      //   isMenuOpen,
+      //   "Touch on menu:",
+      //   isClickOnMenu,
+      //   "Touch on toggle:",
+      //   isClickOnToggle
+      // );
 
       if (!isClickOnMenu && !isClickOnToggle) {
-        console.log("Closing menu due to outside touch");
+        // console.log("Closing menu due to outside touch");
         closeMenu();
       }
     }
@@ -316,7 +316,7 @@ function initializeMobileMenu() {
       // Swipe right to left (close menu if open)
       if (swipeDistanceX < -swipeThreshold && isMenuOpen) {
         closeMenu();
-        console.log("Menu closed via swipe gesture");
+        // console.log("Menu closed via swipe gesture");
       }
 
       // Swipe left to right from right edge (open menu if closed)
@@ -327,7 +327,7 @@ function initializeMobileMenu() {
         window.innerWidth <= 768
       ) {
         toggleMenu();
-        console.log("Menu opened via edge swipe gesture");
+        // console.log("Menu opened via edge swipe gesture");
       }
     }
   }
@@ -346,9 +346,9 @@ function initializeMobileMenu() {
     }
   });
 
-  console.log("Enhanced mobile slide-in menu initialization complete!");
-  console.log("Window width:", window.innerWidth);
-  console.log("Is mobile view:", window.innerWidth <= 768);
+  // console.log("Enhanced mobile slide-in menu initialization complete!");
+  // console.log("Window width:", window.innerWidth);
+  // console.log("Is mobile view:", window.innerWidth <= 768);
 }
 
 // ===== SMOOTH SCROLLING FOR NAVIGATION LINKS =====
@@ -360,7 +360,7 @@ function initializeSmoothScrolling() {
       e.preventDefault();
 
       const targetId = this.getAttribute("href").substring(1); // Remove #
-      console.log(`🎯 Navbar clicked: ${targetId}`);
+      // console.log(`🎯 Navbar clicked: ${targetId}`);
 
       let targetElement = null;
       let scrollOffset = 120; // Default offset for header
@@ -369,7 +369,7 @@ function initializeSmoothScrolling() {
       switch (targetId) {
         case "aboutme":
           targetElement = document.getElementById("aboutme");
-          console.log("📍 Scrolling to About Me section");
+          // console.log("📍 Scrolling to About Me section");
           break;
 
         case "educations":
@@ -382,11 +382,11 @@ function initializeSmoothScrolling() {
           if (aboutGrid) {
             targetElement = aboutmeSection;
             scrollOffset = aboutGrid.offsetTop - 50; // Scroll to grid area
-            console.log(
-              `🎓 Education scroll target: about-grid at offset ${scrollOffset}`
-            );
+            // console.log(
+            //   `🎓 Education scroll target: about-grid at offset ${scrollOffset}`
+            // );
           }
-          console.log("📍 Scrolling to Education article");
+          // console.log("📍 Scrolling to Education article");
           break;
 
         case "experiences":
@@ -403,9 +403,9 @@ function initializeSmoothScrolling() {
               const prasunetOffset = prasunetItem.offsetTop;
               scrollOffset = experienceOffset + prasunetOffset - 100; // Scroll ke Prasunet dengan padding
               targetElement = aboutmeSection;
-              console.log(
-                `💼 Experience scroll target: Prasunet Company at offset ${scrollOffset}`
-              );
+              // console.log(
+              //   `💼 Experience scroll target: Prasunet Company at offset ${scrollOffset}`
+              // );
             } else {
               // Fallback ke logic lama jika Prasunet tidak ditemukan
               const experienceOffset = targetElement.offsetTop;
@@ -415,10 +415,10 @@ function initializeSmoothScrolling() {
                 window.innerHeight / 2 +
                 experienceHeight / 2;
               targetElement = aboutmeSection;
-              console.log(`💼 Experience scroll fallback: middle of article`);
+              // console.log(`💼 Experience scroll fallback: middle of article`);
             }
           }
-          console.log("📍 Scrolling to Experience article");
+          // console.log("📍 Scrolling to Experience article");
           break;
 
         case "skills":
@@ -430,12 +430,12 @@ function initializeSmoothScrolling() {
               const skillsOffset = targetElement.offsetTop;
               scrollOffset = skillsOffset - 100; // Scroll to skills with optimal padding
               targetElement = aboutmeSection;
-              console.log(
-                `⚡ Skills scroll target: skills article at offset ${scrollOffset}`
-              );
+              // console.log(
+              //   `⚡ Skills scroll target: skills article at offset ${scrollOffset}`
+              // );
             }
           }
-          console.log("📍 Scrolling to Skills article");
+          // console.log("📍 Scrolling to Skills article");
           break;
 
         case "interests":
@@ -449,22 +449,22 @@ function initializeSmoothScrolling() {
               targetElement = aboutmeSection;
             }
           }
-          console.log("📍 Scrolling to Interests article");
+          // console.log("📍 Scrolling to Interests article");
           break;
 
         case "projects":
           targetElement = document.getElementById("projects");
-          console.log("📍 Scrolling to Projects section");
+          // console.log("📍 Scrolling to Projects section");
           break;
 
         case "contact":
           targetElement = document.getElementById("contact");
-          console.log("📍 Scrolling to Contact section");
+          // console.log("📍 Scrolling to Contact section");
           break;
 
         default:
           targetElement = document.querySelector(`#${targetId}`);
-          console.log(`📍 Scrolling to default target: ${targetId}`);
+        // console.log(`📍 Scrolling to default target: ${targetId}`);
       }
 
       if (targetElement) {
@@ -480,10 +480,10 @@ function initializeSmoothScrolling() {
           targetPosition = targetElement.offsetTop - headerHeight - 20;
         }
 
-        console.log(`🎯 Scrolling to position: ${targetPosition}`);
+        // console.log(`🎯 Scrolling to position: ${targetPosition}`);
 
         // Immediately activate the clicked navbar item
-        console.log(`🚀 Immediately activating navbar for: ${targetId}`);
+        // console.log(`🚀 Immediately activating navbar for: ${targetId}`);
 
         // Remove active class from all navbar items
         document.querySelectorAll("nav ul li").forEach((navItem) => {
@@ -499,25 +499,25 @@ function initializeSmoothScrolling() {
             "nav ul li a[href='#educations']"
           )?.parentElement;
           currentActiveSection = "educations";
-          console.log("🎓 Education navbar will be activated");
+          // console.log("🎓 Education navbar will be activated");
         } else if (targetId === "experiences" || targetId === "experience") {
           navItemToActivate = document.querySelector(
             "nav ul li a[href='#experiences']"
           )?.parentElement;
           currentActiveSection = "experiences";
-          console.log("💼 Experience navbar will be activated");
+          // console.log("💼 Experience navbar will be activated");
         } else if (targetId === "skills") {
           navItemToActivate = document.querySelector(
             "nav ul li a[href='#skills']"
           )?.parentElement;
           currentActiveSection = "skills";
-          console.log("⚡ Skills navbar will be activated");
+          // console.log("⚡ Skills navbar will be activated");
         } else if (targetId === "interests") {
           navItemToActivate = document.querySelector(
             "nav ul li a[href='#interests']"
           )?.parentElement;
           currentActiveSection = "interests";
-          console.log("❤️ Interests navbar will be activated");
+          // console.log("❤️ Interests navbar will be activated");
         } else if (targetId === "aboutme") {
           navItemToActivate = document.querySelector(
             "nav ul li a[href='#aboutme']"
@@ -543,14 +543,14 @@ function initializeSmoothScrolling() {
 
         if (navItemToActivate) {
           navItemToActivate.classList.add("active");
-          console.log(`✨ Navbar activated for: ${currentActiveSection}`);
-          console.log(`🔍 Activated element:`, navItemToActivate);
+          // console.log(`✨ Navbar activated for: ${currentActiveSection}`);
+          // console.log(`🔍 Activated element:`, navItemToActivate);
         } else {
-          console.log(`⚠️ Could not find navbar item for: ${targetId}`);
-          console.log(
-            `🔍 Available navbar links:`,
-            document.querySelectorAll("nav ul li a")
-          );
+          // console.log(`⚠️ Could not find navbar item for: ${targetId}`);
+          // console.log(
+          //   `🔍 Available navbar links:`,
+          //   document.querySelectorAll("nav ul li a")
+          // );
         }
 
         // Start smooth scroll
@@ -561,10 +561,10 @@ function initializeSmoothScrolling() {
 
         // Update active navbar after scroll completes (backup check)
         setTimeout(() => {
-          console.log("✅ Scroll completed, backup navbar check");
+          // console.log("✅ Scroll completed, backup navbar check");
         }, 1000);
       } else {
-        console.error(`❌ Target element not found: ${targetId}`);
+        // console.error(`❌ Target element not found: ${targetId}`);
       }
     });
   });
@@ -650,9 +650,9 @@ function initializeActiveNavigation() {
 
         if (scrollPosition >= sectionTop - 50) {
           foundActiveSection = section.id;
-          console.log(
-            `Section detected: ${section.id} (scroll: ${scrollPosition}, sectionTop: ${sectionTop})`
-          );
+          // console.log(
+          //   `Section detected: ${section.id} (scroll: ${scrollPosition}, sectionTop: ${sectionTop})`
+          // );
           break;
         }
       }
@@ -671,11 +671,11 @@ function initializeActiveNavigation() {
           // Education navbar aktif ketika user menyentuh about-grid
           const aboutGridTrigger = aboutGridTop - 100; // Trigger 100px sebelum about-grid
 
-          console.log(`🔍 About Grid Analysis:`, {
-            aboutGridTop,
-            aboutGridTrigger,
-            currentScroll: scrollPosition,
-          });
+          // console.log(`🔍 About Grid Analysis:`, {
+          //   aboutGridTop,
+          //   aboutGridTrigger,
+          //   currentScroll: scrollPosition,
+          // });
 
           // Show sub-articles if user has scrolled to about-grid area
           if (scrollPosition >= aboutGridTrigger) {
@@ -704,23 +704,23 @@ function initializeActiveNavigation() {
               const interestsTop =
                 interestsEl.offsetTop + aboutmeSection.offsetTop;
 
-              console.log(`🔍 Enhanced Scroll Analysis:`, {
-                scroll: scrollPosition,
-                aboutGridTrigger,
-                aboutGridTop,
-                educationsTop,
-                educationsMiddle,
-                experiencesTop,
-                experiencesMiddle,
-                skillsTop,
-                skillsMiddle,
-                interestsTop,
-              });
+              // console.log(`🔍 Enhanced Scroll Analysis:`, {
+              //   scroll: scrollPosition,
+              //   aboutGridTrigger,
+              //   aboutGridTop,
+              //   educationsTop,
+              //   educationsMiddle,
+              //   experiencesTop,
+              //   experiencesMiddle,
+              //   skillsTop,
+              //   skillsMiddle,
+              //   interestsTop,
+              // });
 
               // Interest detection - has highest priority if in view
               if (scrollPosition >= interestsTop - 30) {
                 foundActiveSection = "interests";
-                console.log("✅ INTERESTS active");
+                // console.log("✅ INTERESTS active");
               }
               // Skills detection - aktif ketika user menyentuh article id="skills"
               else if (scrollPosition >= skillsTop - 50) {
@@ -731,30 +731,30 @@ function initializeActiveNavigation() {
                     skillsEl.offsetTop + aboutmeSection.offsetTop;
                   const skillsTrigger = skillsArticleTop - 80; // Trigger 80px sebelum skills article
 
-                  console.log(`⚡ Skills Analysis:`, {
-                    skillsArticleTop,
-                    skillsTrigger,
-                    currentScroll: scrollPosition,
-                  });
+                  // console.log(`⚡ Skills Analysis:`, {
+                  //   skillsArticleTop,
+                  //   skillsTrigger,
+                  //   currentScroll: scrollPosition,
+                  // });
 
                   if (scrollPosition >= skillsTrigger) {
                     foundActiveSection = "skills";
-                    console.log(
-                      "✅ SKILLS active (user reached skills article)"
-                    );
+                    // console.log(
+                    //   "✅ SKILLS active (user reached skills article)"
+                    // );
                   } else {
                     // Jika belum sampai skills article, cek experience logic
                     foundActiveSection = "experiences";
-                    console.log(
-                      "💼 EXPERIENCES still active (before skills article)"
-                    );
+                    // console.log(
+                    //   "💼 EXPERIENCES still active (before skills article)"
+                    // );
                   }
                 } else {
                   // Fallback ke logic lama jika skills tidak ditemukan
                   foundActiveSection = "skills";
-                  console.log(
-                    "✅ SKILLS active (fallback - skills article not found)"
-                  );
+                  // console.log(
+                  //   "✅ SKILLS active (fallback - skills article not found)"
+                  // );
                 }
               }
               // Experience detection - aktif ketika user menyentuh timeline Prasunet Company
@@ -771,38 +771,38 @@ function initializeActiveNavigation() {
                   const prasunetTop = prasunetItem.offsetTop + experiencesTop;
                   const prasunetTrigger = prasunetTop - 50; // Trigger 50px sebelum Prasunet
 
-                  console.log(`💼 Prasunet Company Analysis:`, {
-                    prasunetTop,
-                    prasunetTrigger,
-                    currentScroll: scrollPosition,
-                  });
+                  // console.log(`💼 Prasunet Company Analysis:`, {
+                  //   prasunetTop,
+                  //   prasunetTrigger,
+                  //   currentScroll: scrollPosition,
+                  // });
 
                   if (scrollPosition >= prasunetTrigger) {
                     foundActiveSection = "experiences";
-                    console.log(
-                      "✅ EXPERIENCES active (user reached Prasunet Company timeline)"
-                    );
+                    // console.log(
+                    //   "✅ EXPERIENCES active (user reached Prasunet Company timeline)"
+                    // );
                   } else {
                     // Jika belum sampai Prasunet, tetap Education
                     foundActiveSection = "educations";
-                    console.log(
-                      "🎓 EDUCATIONS still active (before Prasunet Company)"
-                    );
+                    // console.log(
+                    //   "🎓 EDUCATIONS still active (before Prasunet Company)"
+                    // );
                   }
                 } else {
                   // Fallback ke logic lama jika Prasunet tidak ditemukan
                   foundActiveSection = "experiences";
-                  console.log(
-                    "✅ EXPERIENCES active (fallback - Prasunet Company not found)"
-                  );
+                  // console.log(
+                  //   "✅ EXPERIENCES active (fallback - Prasunet Company not found)"
+                  // );
                 }
               }
               // Education detection - aktif ketika user menyentuh about-grid area
               else if (scrollPosition >= aboutGridTrigger) {
                 foundActiveSection = "educations";
-                console.log(
-                  "✅ EDUCATIONS active (user reached about-grid area)"
-                );
+                // console.log(
+                //   "✅ EDUCATIONS active (user reached about-grid area)"
+                // );
               }
             }
           }
@@ -813,7 +813,7 @@ function initializeActiveNavigation() {
       // Fallback to aboutme for initial scroll
       if (!foundActiveSection && window.scrollY >= 50) {
         foundActiveSection = "aboutme";
-        console.log("Fallback to aboutme");
+        // console.log("Fallback to aboutme");
       }
 
       currentActiveSection = foundActiveSection;
@@ -828,18 +828,18 @@ function initializeActiveNavigation() {
       const href = link.getAttribute("href");
       if (currentActiveSection && href === `#${currentActiveSection}`) {
         link.parentElement.classList.add("active");
-        console.log("Setting active link for:", currentActiveSection);
+        // console.log("Setting active link for:", currentActiveSection);
       }
     });
 
     // Debug info with more details
-    console.log(
-      `Active section: ${currentActiveSection || "none"}, Scroll: ${Math.round(
-        window.scrollY
-      )}, Device: ${
-        window.innerWidth > 768 ? "Desktop" : "Mobile"
-      }, Nav links found: ${navLinks.length}`
-    );
+    // console.log(
+    //   `Active section: ${currentActiveSection || "none"}, Scroll: ${Math.round(
+    //     window.scrollY
+    //   )}, Device: ${
+    //     window.innerWidth > 768 ? "Desktop" : "Mobile"
+    //   }, Nav links found: ${navLinks.length}`
+    // );
   }
 
   // Initial call
@@ -961,11 +961,11 @@ function initializeFormEnhancements() {
 function initializeBackToTop() {
   const backToTopBtn = document.getElementById("backToTopBtn");
 
-  console.log("Initializing back to top functionality...");
-  console.log("Back to top button found:", !!backToTopBtn);
+  // console.log("Initializing back to top functionality...");
+  // console.log("Back to top button found:", !!backToTopBtn);
 
   if (!backToTopBtn) {
-    console.error("Back to top button not found!");
+    // console.error("Back to top button not found!");
     return;
   }
 
@@ -983,7 +983,7 @@ function initializeBackToTop() {
 
   // Smooth scroll to top function
   function scrollToTop() {
-    console.log("Back to top button clicked - scrolling to top...");
+    // console.log("Back to top button clicked - scrolling to top...");
 
     // Add visual feedback
     backToTopBtn.style.transform = "translateY(0) scale(0.9)";
@@ -1040,19 +1040,19 @@ function initializeBackToTop() {
   window.removeEventListener("scroll", toggleBackToTopButton);
   window.addEventListener("scroll", optimizedScrollHandler);
 
-  console.log("Back to top functionality initialized successfully!");
+  // console.log("Back to top functionality initialized successfully!");
 }
 
 // ===== TEST FUNCTION FOR DEBUGGING =====
 function testNavbarActivation() {
-  console.log("🧪 Testing navbar activation...");
+  // console.log("🧪 Testing navbar activation...");
 
   // Test each article activation
   const testTargets = ["educations", "experiences", "skills", "interests"];
 
   testTargets.forEach((target, index) => {
     setTimeout(() => {
-      console.log(`Testing ${target}...`);
+      // console.log(`Testing ${target}...`);
 
       // Remove all active classes first
       document.querySelectorAll("nav ul li").forEach((navItem) => {
@@ -1065,20 +1065,20 @@ function testNavbarActivation() {
       )?.parentElement;
       if (targetNavItem) {
         targetNavItem.classList.add("active");
-        console.log(`✅ ${target} navbar activated successfully`);
-        console.log(`🔍 Active element classes:`, targetNavItem.className);
-        console.log(
-          `🔍 Active link element:`,
-          targetNavItem.querySelector("a")
-        );
+        // console.log(`✅ ${target} navbar activated successfully`);
+        // console.log(`🔍 Active element classes:`, targetNavItem.className);
+        // console.log(
+        //   `🔍 Active link element:`,
+        //   targetNavItem.querySelector("a")
+        // );
       } else {
-        console.error(`❌ Could not find navbar for ${target}`);
-        console.log(
-          `🔍 Available navbar links:`,
-          Array.from(document.querySelectorAll("nav ul li a")).map(
-            (a) => a.href
-          )
-        );
+        // console.error(`❌ Could not find navbar for ${target}`);
+        // console.log(
+        //   `🔍 Available navbar links:`,
+        //   Array.from(document.querySelectorAll("nav ul li a")).map(
+        //     (a) => a.href
+        //   )
+        // );
       }
     }, index * 3000); // 3 second delay between each test
   });
@@ -1086,21 +1086,21 @@ function testNavbarActivation() {
 
 // Test navbar click simulation
 function testNavbarClicks() {
-  console.log("🖱️ Testing navbar clicks...");
+  // console.log("🖱️ Testing navbar clicks...");
 
   const testTargets = ["educations", "experiences", "skills", "interests"];
 
   testTargets.forEach((target, index) => {
     setTimeout(() => {
-      console.log(`Clicking ${target}...`);
+      // console.log(`Clicking ${target}...`);
       const targetLink = document.querySelector(
         `nav ul li a[href='#${target}']`
       );
       if (targetLink) {
         targetLink.click();
-        console.log(`✅ ${target} navbar clicked successfully`);
+        // console.log(`✅ ${target} navbar clicked successfully`);
       } else {
-        console.error(`❌ Could not find navbar link for ${target}`);
+        // console.error(`❌ Could not find navbar link for ${target}`);
       }
     }, index * 4000); // 4 second delay between each test
   });
@@ -1108,7 +1108,7 @@ function testNavbarClicks() {
 
 // Test Education navbar specifically
 function testEducationNavbar() {
-  console.log("🎓 Testing Education navbar activation...");
+  // console.log("🎓 Testing Education navbar activation...");
 
   // First, let's check the about-grid position
   const aboutmeSection = document.getElementById("aboutme");
@@ -1118,11 +1118,11 @@ function testEducationNavbar() {
     const aboutGridTop = aboutGrid.offsetTop + aboutmeSection.offsetTop;
     const aboutGridTrigger = aboutGridTop - 100;
 
-    console.log(`📊 About Grid Analysis:`, {
-      aboutGridTop,
-      aboutGridTrigger,
-      currentScroll: window.scrollY,
-    });
+    // console.log(`📊 About Grid Analysis:`, {
+    //   aboutGridTop,
+    //   aboutGridTrigger,
+    //   currentScroll: window.scrollY,
+    // });
 
     // Simulate scroll to about-grid area
     window.scrollTo({
@@ -1131,21 +1131,21 @@ function testEducationNavbar() {
     });
 
     setTimeout(() => {
-      console.log(`📍 Scrolled to: ${window.scrollY}`);
-      console.log(`🎯 Should be Education active now`);
+      // console.log(`📍 Scrolled to: ${window.scrollY}`);
+      // console.log(`🎯 Should be Education active now`);
     }, 1000);
   }
 }
 
 // ===== TEST FUNCTION FOR EXPERIENCE (PRASUNET COMPANY) NAVBAR =====
 function testExperienceNavbar() {
-  console.log("🧪 Testing Experience (Prasunet Company) navbar detection...");
+  // console.log("🧪 Testing Experience (Prasunet Company) navbar detection...");
 
   const experiencesEl = document.getElementById("experiences");
   const aboutmeSection = document.getElementById("aboutme");
 
   if (!experiencesEl || !aboutmeSection) {
-    console.error("❌ Experience or About Me section not found!");
+    // console.error("❌ Experience or About Me section not found!");
     return;
   }
 
@@ -1153,7 +1153,7 @@ function testExperienceNavbar() {
   const prasunetItem = timelineItems[3]; // Index 3 = Prasunet Company (item ke-4)
 
   if (!prasunetItem) {
-    console.error("❌ Prasunet Company timeline item not found!");
+    // console.error("❌ Prasunet Company timeline item not found!");
     return;
   }
 
@@ -1161,14 +1161,14 @@ function testExperienceNavbar() {
   const prasunetTop = prasunetItem.offsetTop + experiencesTop;
   const prasunetTrigger = prasunetTop - 50;
 
-  console.log("📊 Experience (Prasunet Company) Test Results:", {
-    experiencesTop,
-    prasunetTop,
-    prasunetTrigger,
-    prasunetCompany: prasunetItem.querySelector("h4")?.textContent,
-    currentScroll: window.pageYOffset,
-    shouldBeActive: window.pageYOffset >= prasunetTrigger,
-  });
+  // console.log("📊 Experience (Prasunet Company) Test Results:", {
+  //   experiencesTop,
+  //   prasunetTop,
+  //   prasunetTrigger,
+  //   prasunetCompany: prasunetItem.querySelector("h4")?.textContent,
+  //   currentScroll: window.pageYOffset,
+  //   shouldBeActive: window.pageYOffset >= prasunetTrigger,
+  // });
 
   // Scroll to test position
   window.scrollTo({
@@ -1177,7 +1177,7 @@ function testExperienceNavbar() {
   });
 
   setTimeout(() => {
-    console.log("✅ Scrolled to Prasunet Company test position");
+    // console.log("✅ Scrolled to Prasunet Company test position");
   }, 1000);
 }
 
@@ -1230,4 +1230,4 @@ if ("IntersectionObserver" in window) {
 }
 
 // Console log for debugging
-console.log("Jeremy Ansellino Portfolio - All systems operational! ✨");
+// console.log("Jeremy Ansellino Portfolio - All systems operational! ✨");
